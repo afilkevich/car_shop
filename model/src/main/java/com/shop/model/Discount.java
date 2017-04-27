@@ -17,6 +17,10 @@ public class Discount {
     public Discount() {
     }
 
+    public Discount(Integer valueDiscount) {
+        this.valueDiscount = valueDiscount;
+    }
+
     public Integer getId() {
         return id;
     }

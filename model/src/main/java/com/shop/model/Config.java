@@ -19,6 +19,11 @@ public class Config {
     public Config() {
     }
 
+    public Config(String type, String descripction) {
+        this.type = type;
+        this.descripction = descripction;
+    }
+
     public Integer getId() {
         return id;
     }

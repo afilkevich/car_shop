@@ -16,10 +16,18 @@ private Integer id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateBuilder;
-    private Float price;
+    private Integer price;
 
-    public Car(Integer id, Integer idBrand, Integer idModel, Integer idConfig, LocalDate dateBuilder, Float price) {
+    public Car(Integer id, Integer idBrand, Integer idModel, Integer idConfig, LocalDate dateBuilder, Integer price) {
         this.id = id;
+        this.idBrand = idBrand;
+        this.idModel = idModel;
+        this.idConfig = idConfig;
+        this.dateBuilder = dateBuilder;
+        this.price = price;
+    }
+
+    public Car(Integer idBrand, Integer idModel, Integer idConfig, LocalDate dateBuilder, Integer price) {
         this.idBrand = idBrand;
         this.idModel = idModel;
         this.idConfig = idConfig;
@@ -70,11 +78,11 @@ private Integer id;
         this.dateBuilder = dateBuilder;
     }
 
-    public Float getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

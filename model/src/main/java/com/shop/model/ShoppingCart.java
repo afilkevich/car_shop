@@ -11,14 +11,19 @@ public class ShoppingCart {
     private Integer idCar;
     private Integer idDiscount;
     private Integer amountCar;
-    private Float price;
+    private Integer price;
 
-    public ShoppingCart(Integer id, Integer idCar, Integer idDiscount, Integer amountCar, Float price) {
+    public ShoppingCart(Integer id, Integer idCar, Integer idDiscount, Integer amountCar, Integer price) {
         this.id = id;
         this.idCar = idCar;
         this.idDiscount = idDiscount;
         this.amountCar = amountCar;
         this.price = price;
+    }
+
+    public ShoppingCart(Integer idCar, Integer amountCar) {
+        this.idCar = idCar;
+        this.amountCar = amountCar;
     }
 
     public ShoppingCart() {
@@ -56,11 +61,11 @@ public class ShoppingCart {
         this.amountCar = amountCar;
     }
 
-    public Float getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
