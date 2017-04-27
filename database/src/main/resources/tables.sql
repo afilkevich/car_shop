@@ -1,58 +1,128 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE DATABASE shop DEFAULT CHARACTER SET utf8;
-USE shop;
+-- -----------------------------------------------------
+-- Schema car_shop
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `car_shop` ;
 
-CREATE TABLE IF NOT EXISTS brand (
-  id INT NOT NULL AUTO_INCREMENT,
-  name_brand VARCHAR(45) NOT NULL UNIQUE ,
-  PRIMARY KEY (id))
-DEFAULT CHARACTER SET = utf8;
+-- -----------------------------------------------------
+-- Schema car_shop
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `car_shop` DEFAULT CHARACTER SET utf8 ;
+USE `car_shop` ;
 
-CREATE TABLE IF NOT EXISTS model (
-  id INT NOT NULL AUTO_INCREMENT,
-  name_model VARCHAR(45) NOT NULL UNIQUE ,
-  PRIMARY KEY (id))
-DEFAULT CHARACTER SET = utf8;
+-- -----------------------------------------------------
+-- Table `car_shop`.`configuration`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `car_shop`.`configuration` ;
 
-CREATE TABLE IF NOT EXISTS config (
-  id INT NOT NULL AUTO_INCREMENT,
-  name_config VARCHAR(45) NOT NULL UNIQUE ,
-  description_config VARCHAR(100)
-  PRIMARY KEY (id))
-DEFAULT CHARACTER SET = utf8;
-
-
-CREATE TABLE IF NOT EXISTS discount (
-  id INT NOT NULL AUTO_INCREMENT,
-  value_discount INT NOT NULL UNIQUE ,
-  PRIMARY KEY (id))
-DEFAULT CHARACTER SET = utf8;
+CREATE TABLE IF NOT EXISTS `car_shop`.`configuration` (
+  `id_configuration` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(75) NOT NULL,
+  PRIMARY KEY (`id_configuration`))
+ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS car (
-id INT NOT NULL AUTO_INCREMENT,
-id_brand INT NOT NULL,
-id_model INT NOT NULL,
-id_config INT NOT NULL,
-date_build DATE NOT NULL,
-price INT NOT NULL,
-PRIMARY KEY(id),
-FOREIGN KEY(id_brand) REFERENCES brand(id),
-FOREIGN KEY (id_model) REFERENCES model(id),
-FOREIGN KEY(id_config) REFERENCES config(id))
-DEFAULT CHARACTER SET = utf8;
+-- -----------------------------------------------------
+-- Table `car_shop`.`brand`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `car_shop`.`brand` ;
 
-CREATE TABLE IF NOT EXISTS shopping_cart (
-id INT NOT NULL AUTO_INCREMENT,
-id_car INT NOT NULL,
-id_discount INT NOT NULL,
-amount_car INT NOT NULL,
-price INT NOT NULL,
-PRIMARY KEY(id),
-FOREIGN KEY(id_car) REFERENCES car(id),
-FOREIGN KEY (id_discount) REFERENCES discount(id))
-DEFAULT CHARACTER SET = utf8;
+CREATE TABLE IF NOT EXISTS `car_shop`.`brand` (
+  `id_brand` INT NOT NULL AUTO_INCREMENT,
+  `name_brand` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_brand`))
+ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `car_shop`.`model`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `car_shop`.`model` ;
+
+CREATE TABLE IF NOT EXISTS `car_shop`.`model` (
+  `id_model` INT NOT NULL AUTO_INCREMENT,
+  `name_model` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_model`))
+ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `car_shop`.`car`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `car_shop`.`car` ;
+
+CREATE TABLE IF NOT EXISTS `car_shop`.`car` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_brand` INT NOT NULL,
+  `id_model` INT NOT NULL,
+  `id_configuration` INT NOT NULL,
+  `date_builder` DATE NOT NULL,
+  `price` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `id_configuration_idx` (`id_configuration` ASC),
+  INDEX `id_brand_idx` (`id_brand` ASC),
+  INDEX `id_model_idx` (`id_model` ASC),
+  CONSTRAINT `id_configuration`
+    FOREIGN KEY (`id_configuration`)
+    REFERENCES `car_shop`.`configuration` (`id_configuration`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_brand`
+    FOREIGN KEY (`id_brand`)
+    REFERENCES `car_shop`.`brand` (`id_brand`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_model`
+    FOREIGN KEY (`id_model`)
+    REFERENCES `car_shop`.`model` (`id_model`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `car_shop`.`discount`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `car_shop`.`discount` ;
+
+CREATE TABLE IF NOT EXISTS `car_shop`.`discount` (
+  `id_discount` INT NOT NULL AUTO_INCREMENT,
+  `value_discount` INT NOT NULL,
+  PRIMARY KEY (`id_discount`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `car_shop`.`shopping cart`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `car_shop`.`shopping cart` ;
+
+CREATE TABLE IF NOT EXISTS `car_shop`.`shopping cart` (
+  `id_shopping _cart` INT NOT NULL AUTO_INCREMENT,
+  `id_car` INT NOT NULL,
+  `id_discount` INT NOT NULL,
+  `amount_car` INT NOT NULL,
+  `price` INT NOT NULL,
+  PRIMARY KEY (`id_shopping _cart`),
+  INDEX `id_car_idx` (`id_car` ASC),
+  INDEX `id_count_idx` (`id_discount` ASC),
+  CONSTRAINT `id_car`
+    FOREIGN KEY (`id_car`)
+    REFERENCES `car_shop`.`car` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_count`
+    FOREIGN KEY (`id_discount`)
+    REFERENCES `car_shop`.`discount` (`id_discount`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
