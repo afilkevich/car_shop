@@ -99,15 +99,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `car_shop`.`shopping cart`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `car_shop`.`shopping cart` ;
+DROP TABLE IF EXISTS `car_shop`.`shopping_cart` ;
 
-CREATE TABLE IF NOT EXISTS `car_shop`.`shopping cart` (
-  `id_shopping _cart` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `car_shop`.`shopping_cart` (
+  `id_shopping_cart` INT NOT NULL AUTO_INCREMENT,
   `id_car` INT NOT NULL,
   `id_discount` INT NOT NULL,
   `amount_car` INT NOT NULL,
   `price` INT NOT NULL,
-  PRIMARY KEY (`id_shopping _cart`),
+  PRIMARY KEY (`id_shopping_cart`),
   INDEX `id_car_idx` (`id_car` ASC),
   INDEX `id_count_idx` (`id_discount` ASC),
   CONSTRAINT `id_car`
