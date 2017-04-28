@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface BrandMapper {
     public List<Brand> findAll();
-   // public Brand findByName();
+    public Brand findByName(String name);
     //public void insert(Brand brand);
     //public void update(Brand brand);
     //public void delete( Integer id);

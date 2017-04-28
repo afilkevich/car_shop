@@ -5,13 +5,17 @@
 
     <resultMap id="brandResultMap" type="Brand">
         <id property="id" column="id_brand" />
-        <id property="name" column="brand_name" />
+        <id property="name" column="name_brand" />
 
     </resultMap>
 
     <select id="findAll" resultMap="brandResultMap">
         SELECT *
         FROM `car_shop`.`brand`;
+    </select>
+
+    <select id="findByName" parameterType="String" resultMap="brandResultMap">
+        SELECT * FROM `car_shop`.`brand` WHERE name_brand=#{name}
     </select>
 
 
