@@ -30,4 +30,9 @@
         <property name="sqlSessionFactory" ref="sessionFactory" />
     </bean>
 
+    <bean id="modelMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.shop.dao.ModelMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
 </beans>
