@@ -35,4 +35,15 @@
         <property name="sqlSessionFactory" ref="sessionFactory" />
     </bean>
 
+    <bean id="configMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.shop.dao.ConfigMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="discountMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.shop.dao.DiscountMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
+
 </beans>

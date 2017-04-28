@@ -8,20 +8,20 @@ import java.util.Objects;
 public class Config {
     private Integer id;
     private String type;
-    private String descripction;
+    private String description;
 
-    public Config(Integer id, String type, String descripction) {
+    public Config(Integer id, String type, String description) {
         this.id = id;
         this.type = type;
-        this.descripction = descripction;
+        this.description = description;
     }
 
     public Config() {
     }
 
-    public Config(String type, String descripction) {
+    public Config(String type, String description) {
         this.type = type;
-        this.descripction = descripction;
+        this.description = description;
     }
 
     public Integer getId() {
@@ -40,12 +40,12 @@ public class Config {
         this.type = type;
     }
 
-    public String getDescripction() {
-        return descripction;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripction(String descripction) {
-        this.descripction = descripction;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Config {
         return "Config{" +
                 "id=" + id +
                 ", type='" + type + '\'' +
-                ", descripction='" + descripction + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 
@@ -64,11 +64,11 @@ public class Config {
         Config config = (Config) o;
         return Objects.equals(id, config.id) &&
                 Objects.equals(type, config.type) &&
-                Objects.equals(descripction, config.descripction);
+                Objects.equals(description, config.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, descripction);
+        return Objects.hash(id, type, description);
     }
 }

@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `car_shop`.`car` (
     FOREIGN KEY (`id_configuration`)
     REFERENCES `car_shop`.`configuration` (`id_configuration`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_brand`
     FOREIGN KEY (`id_brand`)
     REFERENCES `car_shop`.`brand` (`id_brand`)
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `car_shop`.`car` (
     FOREIGN KEY (`id_model`)
     REFERENCES `car_shop`.`model` (`id_model`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

@@ -1,7 +1,6 @@
 package com.shop.dao;
 
-
-import com.shop.model.Model;
+import com.shop.model.Config;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,45 +19,47 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:mybatis-spring-test.xml"})
 @Transactional
-public class ModelMapperTest {
+public class ConfigMapperTest {
+
     @Autowired
-    ModelMapper modelMapper;
+    ConfigMapper configMapper;
 
-    private static final String NAME="Sedan";
+    private static  final String TYPE ="Lux";
 
-    private  static final String NAME_UP="Sedan1";
-    private static final Model MODEL_Up=new Model("Jeep");
+    private static final String TYPE_UP="lux1";
+    private static final Config CONFIG=new Config("newConf"," new_desc");
 
 
     @Test
     public void findAll() throws Exception {
-        List<Model> list=modelMapper.findAll();
+        List<Config> list=configMapper.findAll();
         Assert.assertTrue(list.size()>0);
-    }
+       }
 
     @Test
-    public void findByName() throws Exception {
-        Model model =modelMapper.findByName(NAME);
-        Assert.assertNotNull(model);
+    public void findByType() throws Exception {
+
+        Config config=configMapper.findByType(TYPE);
+        Assert.assertNotNull(config);
 
     }
 
     @Test
     public void insert() throws Exception {
-        modelMapper.insert(MODEL_Up);
-        Model model =modelMapper.findByName(MODEL_Up.getName());
-        Assert.assertNotNull(model);
+        configMapper.insert(CONFIG);
+        Config config=configMapper.findByType(CONFIG.getType());
+        Assert.assertNotNull(config);
+
     }
 
     @Test
     public void update() throws Exception {
-        Model model=modelMapper.findByName("Sedan");
-        model.setName(NAME_UP);
-        modelMapper.update(model);
-        model=modelMapper.findByName(NAME_UP);
-        Assert.assertNotNull(model);
+        Config config=configMapper.findByType(TYPE);
+        config.setType(TYPE_UP);
+        configMapper.update(config);
+        config=configMapper.findByType(TYPE_UP);
+        Assert.assertEquals(TYPE_UP,config.getType());
 
     }
-
 
 }
