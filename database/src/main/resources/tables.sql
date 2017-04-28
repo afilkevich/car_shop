@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `car_shop`.`car` (
     FOREIGN KEY (`id_brand`)
     REFERENCES `car_shop`.`brand` (`id_brand`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_model`
     FOREIGN KEY (`id_model`)
     REFERENCES `car_shop`.`model` (`id_model`)
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `car_shop`.`shopping_cart` (
   CONSTRAINT `id_car`
     FOREIGN KEY (`id_car`)
     REFERENCES `car_shop`.`car` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `id_count`
     FOREIGN KEY (`id_discount`)

@@ -24,22 +24,45 @@ public class BrandMapperTest {
     @Autowired
     BrandMapper brandMapper;
 
-    private final String name="Toyota";
+    private static final String name="Toyota";
+
+    private  static final String nameUP="Audi1";
+    private static final Brand brandUp=new Brand("BMW");
 
     @Test
     public void findAll() throws Exception {
         List<Brand> list=brandMapper.findAll();
+
         Assert.assertTrue(list.size()>0);
 
     }
+
+    @Test
+    public void update()throws Exception{
+        Brand brand=brandMapper.findByName("Audi");
+        brand.setName(nameUP);
+        brandMapper.update(brand);
+        Brand nbrand=brandMapper.findByName(nameUP);
+        Assert.assertNotNull(nbrand);
+    }
+
+    @Test
+    public void insert() throws Exception{
+        brandMapper.insert(brandUp);
+        List<Brand> list=brandMapper.findAll();
+        Assert.assertTrue(list.size()==3);
+    }
+
+
+
+
+
     @Test
     public void findByName() throws Exception{
         Brand brand=brandMapper.findByName(name);
         Assert.assertEquals(name,brand.getName());
 
     }
-
-
 
 
 }

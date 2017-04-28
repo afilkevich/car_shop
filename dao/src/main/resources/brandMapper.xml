@@ -19,5 +19,17 @@
     </select>
 
 
+    <select id="insert" parameterType="Brand">
+        INSERT INTO `car_shop`.`brand` ( name_brand)
+        VALUES (#{name})
+    </select>
+
+    <select id="update" parameterType="Brand">
+        UPDATE `car_shop`.`brand` SET
+        name_brand = #{name}
+        WHERE id_brand= #{id}
+    </select>
+
+
 
 </mapper>
