@@ -19,7 +19,7 @@ import java.util.List;
  * Created by master on 28.4.17.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:mybatis-spring-test.xml"})
+@ContextConfiguration(locations = {"classpath*:dao-test-mybatis-spring.xml"})
 @Transactional
 public class DiscountMapperTest {
     private static final Logger LOGGER= LogManager.getLogger();

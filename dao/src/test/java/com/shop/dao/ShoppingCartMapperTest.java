@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  * Created by master on 29.4.17.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:mybatis-spring-test.xml"})
+@ContextConfiguration(locations = {"classpath*:dao-test-mybatis-spring.xml"})
 @Transactional
 public class ShoppingCartMapperTest {
     private static final Logger LOGGER= LogManager.getLogger();
