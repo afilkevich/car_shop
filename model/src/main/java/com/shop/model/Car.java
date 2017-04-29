@@ -23,11 +23,11 @@ private Integer id;
         this.idBrand = idBrand;
         this.idModel = idModel;
         this.idConfig = idConfig;
-        this.dateBuilder = dateBuilder;
+        this.dateBuilder =dateBuilder;
         this.price = price;
     }
 
-    public Car(Integer idBrand, Integer idModel, Integer idConfig, LocalDate dateBuilder, Integer price) {
+    public Car(Integer idBrand, Integer idModel, Integer idConfig,LocalDate dateBuilder, Integer price) {
         this.idBrand = idBrand;
         this.idModel = idModel;
         this.idConfig = idConfig;
@@ -77,6 +77,7 @@ private Integer id;
     public void setDateBuilder(LocalDate dateBuilder) {
         this.dateBuilder = dateBuilder;
     }
+
 
     public Integer getPrice() {
         return price;

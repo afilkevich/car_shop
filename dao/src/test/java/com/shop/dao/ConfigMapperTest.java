@@ -1,6 +1,8 @@
 package com.shop.dao;
 
 import com.shop.model.Config;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+
 
 /**
  * Created by master on 28.4.17.
@@ -20,6 +22,8 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"classpath*:mybatis-spring-test.xml"})
 @Transactional
 public class ConfigMapperTest {
+    private static final Logger LOGGER= LogManager.getLogger();
+
 
     @Autowired
     ConfigMapper configMapper;
@@ -32,20 +36,21 @@ public class ConfigMapperTest {
 
     @Test
     public void findAll() throws Exception {
+        LOGGER.debug("ConfigMapperTest:findall()");
         List<Config> list=configMapper.findAll();
         Assert.assertTrue(list.size()>0);
        }
 
     @Test
     public void findByType() throws Exception {
-
+        LOGGER.debug("ConfigMapperTest:findByType()");
         Config config=configMapper.findByType(TYPE);
         Assert.assertNotNull(config);
-
     }
 
     @Test
     public void insert() throws Exception {
+        LOGGER.debug("ConfigMapperTest:insert()");
         configMapper.insert(CONFIG);
         Config config=configMapper.findByType(CONFIG.getType());
         Assert.assertNotNull(config);
@@ -54,6 +59,7 @@ public class ConfigMapperTest {
 
     @Test
     public void update() throws Exception {
+        LOGGER.debug("ConfigMapperTest:update()");
         Config config=configMapper.findByType(TYPE);
         config.setType(TYPE_UP);
         configMapper.update(config);

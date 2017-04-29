@@ -1,6 +1,8 @@
 package com.shop.dao;
 
 import com.shop.model.Brand;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+
 
 /**
  * Created by master on 27.4.17.
@@ -20,6 +22,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"classpath*:mybatis-spring-test.xml"})
 @Transactional
 public class BrandMapperTest {
+    private static  final Logger LOGGER= LogManager.getLogger();
 
     @Autowired
     BrandMapper brandMapper;
@@ -31,14 +34,15 @@ public class BrandMapperTest {
 
     @Test
     public void findAll() throws Exception {
+        LOGGER.debug("BrandMapperTest:findall()");
         List<Brand> list=brandMapper.findAll();
-
         Assert.assertTrue(list.size()>0);
 
     }
 
     @Test
     public void update()throws Exception{
+        LOGGER.debug("BrandMapperTest:update()");
         Brand brand=brandMapper.findByName("Audi");
         brand.setName(nameUP);
         brandMapper.update(brand);
@@ -48,17 +52,15 @@ public class BrandMapperTest {
 
     @Test
     public void insert() throws Exception{
+        LOGGER.debug("BrandMapperTest:insert()");
         brandMapper.insert(brandUp);
         List<Brand> list=brandMapper.findAll();
         Assert.assertTrue(list.size()==3);
     }
 
-
-
-
-
     @Test
     public void findByName() throws Exception{
+        LOGGER.debug("BrandMapperTest:findByName()");
         Brand brand=brandMapper.findByName(name);
         Assert.assertEquals(name,brand.getName());
 

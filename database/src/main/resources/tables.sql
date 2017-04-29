@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `car_shop`.`shopping_cart` (
     FOREIGN KEY (`id_car`)
     REFERENCES `car_shop`.`car` (`id`)
     ON DELETE CASCADE
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `id_count`
     FOREIGN KEY (`id_discount`)
     REFERENCES `car_shop`.`discount` (`id_discount`)
