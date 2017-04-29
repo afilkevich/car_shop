@@ -21,6 +21,13 @@ public class ShoppingCart {
         this.price = price;
     }
 
+    public ShoppingCart(Integer idCar, Integer idDiscount, Integer amountCar, Integer price) {
+        this.idCar = idCar;
+        this.idDiscount = idDiscount;
+        this.amountCar = amountCar;
+        this.price = price;
+    }
+
     public ShoppingCart(Integer idCar, Integer amountCar) {
         this.idCar = idCar;
         this.amountCar = amountCar;

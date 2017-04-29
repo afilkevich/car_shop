@@ -9,8 +9,9 @@ import java.util.List;
  */
 public interface ShoppingCartMapper {
      List<ShoppingCart> findAll();
-     ShoppingCart findById(String id);
+     ShoppingCart findById(Integer id);
      void insert(ShoppingCart cart);
      void update(ShoppingCart cart);
+    void delete(Integer id);
 
 }

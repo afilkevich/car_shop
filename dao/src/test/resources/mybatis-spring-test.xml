@@ -50,5 +50,10 @@
         <property name="sqlSessionFactory" ref="sessionFactory" />
     </bean>
 
+    <bean id="shoppingCartMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.shop.dao.ShoppingCartMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
 
 </beans>

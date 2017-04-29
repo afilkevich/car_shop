@@ -12,21 +12,21 @@
 
     <select id="findAll" resultMap="configResultMap">
         SELECT *
-        FROM `car_shop`.`configuration`;
+        FROM car_shop.configuration;
     </select>
 
     <select id="findByType" parameterType="String" resultMap="configResultMap">
-        SELECT * FROM `car_shop`.`configuration` WHERE type=#{type}
+        SELECT * FROM car_shop.configuration WHERE type=#{type}
     </select>
 
 
     <select id="insert" parameterType="Config">
-        INSERT INTO `car_shop`.`configuration` (type, description)
+        INSERT INTO car_shop.configuration (type, description)
         VALUES (#{type}, #{description})
     </select>
 
     <select id="update" parameterType="Config">
-        UPDATE `car_shop`.`configuration` SET
+        UPDATE car_shop.configuration SET
         type = #{type},
         description=#{description}
         WHERE id_configuration= #{id}

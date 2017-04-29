@@ -15,28 +15,28 @@
 
     <select id="findAll" resultMap="carResultMap">
         SELECT *
-        FROM `car_shop`.`car`;
+        FROM car_shop.car;
     </select>
 
     <select id="findByIdBrand" parameterType="int" resultMap="carResultMap">
-        SELECT * FROM `car_shop`.`car` WHERE id_brand=#{idBrand}
+        SELECT * FROM car_shop.car WHERE id_brand=#{idBrand}
     </select>
 
     <select id="findByIdModel" parameterType="int" resultMap="carResultMap">
-        SELECT * FROM `car_shop`.`car` WHERE id_model=#{idModel}
+        SELECT * FROM car_shop.car WHERE id_model=#{idModel}
     </select>
 
     <select id="findById" parameterType="int" resultMap="carResultMap">
-        SELECT * FROM `car_shop`.`car` WHERE id=#{id}
+        SELECT * FROM car_shop.car WHERE id=#{id}
     </select>
 
     <select id="insert" parameterType="Car">
-        INSERT INTO `car_shop`.`car` ( id_brand, id_model, id_configuration, date_builder, price)
+        INSERT INTO car_shop.car ( id_brand, id_model, id_configuration, date_builder, price)
         VALUES (#{idBrand}, #{idModel}, #{idConfig}, #{dateBuilder}, #{price})
     </select>
 
     <select id="update" parameterType="Car">
-        UPDATE `car_shop`.`car` SET
+        UPDATE car_shop.car SET
         id_brand = #{idBrand},
         id_model=#{idModel},
         id_configuration=#{idConfig},
@@ -46,7 +46,7 @@
     </select>
 
     <select id="delete" parameterType="int" >
-        DELETE FROM `car_shop`.`car` WHERE id=#{id}
+        DELETE FROM car_shop.car WHERE id=#{id}
     </select>
 
 

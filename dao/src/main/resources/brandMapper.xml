@@ -11,25 +11,23 @@
 
     <select id="findAll" resultMap="brandResultMap">
         SELECT *
-        FROM `car_shop`.`brand`;
+        FROM car_shop.brand;
     </select>
 
     <select id="findByName" parameterType="String" resultMap="brandResultMap">
-        SELECT * FROM `car_shop`.`brand` WHERE name_brand=#{name}
+        SELECT * FROM car_shop.brand WHERE name_brand=#{name}
     </select>
 
 
     <select id="insert" parameterType="Brand">
-        INSERT INTO `car_shop`.`brand` ( name_brand)
+        INSERT INTO car_shop.brand ( name_brand)
         VALUES (#{name})
     </select>
 
     <select id="update" parameterType="Brand">
-        UPDATE `car_shop`.`brand` SET
+        UPDATE car_shop.brand SET
         name_brand = #{name}
         WHERE id_brand= #{id}
     </select>
-
-
 
 </mapper>

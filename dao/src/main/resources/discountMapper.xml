@@ -12,26 +12,23 @@
 
     <select id="findAll" resultMap="discountResultMap">
         SELECT *
-        FROM `car_shop`.`discount`;
+        FROM car_shop.discount;
     </select>
 
     <select id="findByValue" parameterType="int" resultMap="discountResultMap">
-        SELECT * FROM `car_shop`.`discount` WHERE value_discount=#{value}
+        SELECT * FROM car_shop.discount WHERE value_discount=#{value}
     </select>
 
 
     <select id="insert" parameterType="Discount">
-        INSERT INTO `car_shop`.`discount` ( value_discount)
+        INSERT INTO car_shop.discount ( value_discount)
         VALUES (#{valueDiscount})
     </select>
 
     <select id="update" parameterType="Discount">
-        UPDATE `car_shop`.`discount` SET
+        UPDATE car_shop.discount SET
         value_discount = #{valueDiscount}
         WHERE id_discount= #{id}
     </select>
-
-
-
 
 </mapper>
