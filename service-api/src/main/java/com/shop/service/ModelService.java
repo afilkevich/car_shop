@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface ModelService {
     List<Model> findAll();
+    Model findById(Integer id);
     Model findByName(String name);
     void insert(Model model);
     void update(Model model);

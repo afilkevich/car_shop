@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface ConfigService {
     List<Config> findAll();
+    Config findById(Integer id);
     Config findByType(String type);
     void insert(Config config);
     void update(Config config);

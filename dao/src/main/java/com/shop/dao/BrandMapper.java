@@ -1,6 +1,7 @@
 package com.shop.dao;
 
 import com.shop.model.Brand;
+import org.springframework.dao.DataAccessException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface BrandMapper {
     public List<Brand> findAll();
-    public Brand findByName(String name);
+    public Brand findByName(String name) ;
     Brand findById(Integer id);
     public void insert(Brand brand);
     public void update(Brand brand);

@@ -10,6 +10,7 @@ import java.util.List;
 public interface DiscountService {
     List<Discount> findAll();
     Discount findByValue(Integer value);
+    Discount findById(Integer id);
     void insert(Discount discount);
     void update(Discount discount);
 }

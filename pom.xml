@@ -14,6 +14,7 @@
         <module>database</module>
         <module>dao</module>
         <module>service-api</module>
+        <module>service</module>
 
     </modules>
 

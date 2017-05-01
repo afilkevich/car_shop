@@ -10,6 +10,7 @@ import java.util.List;
 public interface BrandService {
      List<Brand> findAll();
      Brand findByName(String name);
+     Brand findById(Integer id);
      void insert(Brand brand);
      void update(Brand brand);
 }
