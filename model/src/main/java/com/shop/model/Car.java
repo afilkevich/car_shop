@@ -9,7 +9,7 @@ import java.util.Objects;
  * Created by master on 21.4.17.
  */
 public class Car {
-private Integer id;
+     private Integer id;
     private Integer idBrand;
     private Integer idModel;
     private Integer idConfig;

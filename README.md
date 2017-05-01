@@ -1,2 +1,2 @@
 # It's simple web-application CarShop.
-#Use: MySql,Spring,
+#Use: MySql,Spring,mybatis, maven

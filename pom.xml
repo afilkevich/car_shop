@@ -13,6 +13,7 @@
         <module>model</module>
         <module>database</module>
         <module>dao</module>
+        <module>service-api</module>
 
     </modules>
 

@@ -49,8 +49,4 @@
         DELETE FROM car_shop.car WHERE id=#{id}
     </select>
 
-
-
-
-
 </mapper>
