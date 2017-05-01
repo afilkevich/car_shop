@@ -10,6 +10,7 @@ import java.util.List;
 public interface BrandMapper {
     public List<Brand> findAll();
     public Brand findByName(String name);
+    Brand findById(Integer id);
     public void insert(Brand brand);
     public void update(Brand brand);
 

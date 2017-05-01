@@ -66,5 +66,13 @@ public class BrandMapperTest {
 
     }
 
+    @Test
+    public void findById() throws Exception{
+        LOGGER.debug("brandMapperTest:findByID");
+        Brand brand=brandMapper.findById(1);
+        Assert.assertNotNull(brand);
+    }
+
+
 
 }

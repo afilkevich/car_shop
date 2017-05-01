@@ -10,6 +10,7 @@ import java.util.List;
 public interface ConfigMapper {
     List<Config> findAll();
     Config findByType(String type);
+    Config findById(Integer id);
     void insert(Config config);
     void update(Config config);
 }

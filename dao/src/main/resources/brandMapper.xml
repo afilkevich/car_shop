@@ -18,6 +18,10 @@
         SELECT * FROM car_shop.brand WHERE name_brand=#{name}
     </select>
 
+    <select id="findById" parameterType="int" resultMap="brandResultMap">
+        SELECT * FROM car_shop.brand WHERE id_brand=#{id}
+    </select>
+
 
     <select id="insert" parameterType="Brand">
         INSERT INTO car_shop.brand ( name_brand)

@@ -18,6 +18,10 @@
         SELECT * FROM car_shop.model WHERE name_model=#{name}
     </select>
 
+    <select id="findById" parameterType="int" resultMap="modelResultMap">
+        SELECT * FROM car_shop.model WHERE id_model=#{id}
+    </select>
+
 
     <select id="insert" parameterType="Model">
         INSERT INTO car_shop.model ( name_model)

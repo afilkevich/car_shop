@@ -19,6 +19,10 @@
         SELECT * FROM car_shop.configuration WHERE type=#{type}
     </select>
 
+    <select id="findById" parameterType="int" resultMap="configResultMap">
+        SELECT * FROM car_shop.configuration WHERE id_configuration=#{id}
+    </select>
+
 
     <select id="insert" parameterType="Config">
         INSERT INTO car_shop.configuration (type, description)

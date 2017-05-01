@@ -19,6 +19,10 @@
         SELECT * FROM car_shop.discount WHERE value_discount=#{value}
     </select>
 
+    <select id="findById" parameterType="int" resultMap="discountResultMap">
+        SELECT * FROM car_shop.discount WHERE id_discount=#{id}
+    </select>
+
 
     <select id="insert" parameterType="Discount">
         INSERT INTO car_shop.discount ( value_discount)

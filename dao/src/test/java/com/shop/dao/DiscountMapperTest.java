@@ -44,7 +44,15 @@ public class DiscountMapperTest {
         LOGGER.debug("DiscountMapperTest:findByValue()");
         Discount discount=discountMapper.findByValue(VALUE);
         Assert.assertNotNull(discount);
-        System.out.println(discount);
+
+    }
+
+    @Test
+    public void findById() throws Exception{
+        LOGGER.debug("DiscountMapperTest:findById");
+        Discount discount=discountMapper.findById(1);
+        Assert.assertNotNull(discount);
+
     }
 
     @Test

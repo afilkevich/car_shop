@@ -45,7 +45,13 @@ public class ModelMapperTest {
         LOGGER.debug("ModelMapperTest:findByName()");
         Model model =modelMapper.findByName(NAME);
         Assert.assertNotNull(model);
+    }
 
+    @Test
+    public void findById() throws Exception{
+        LOGGER.debug("ModelMapperTest:findById");
+        Model model=modelMapper.findById(1);
+        Assert.assertNotNull(model);
     }
 
     @Test

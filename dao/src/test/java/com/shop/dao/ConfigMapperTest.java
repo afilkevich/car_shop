@@ -49,6 +49,13 @@ public class ConfigMapperTest {
     }
 
     @Test
+    public void findById() throws Exception{
+        LOGGER.debug("ConfigMapperTest: findById");
+        Config config=configMapper.findById(1);
+        Assert.assertNotNull(config);
+    }
+
+    @Test
     public void insert() throws Exception {
         LOGGER.debug("ConfigMapperTest:insert()");
         configMapper.insert(CONFIG);
