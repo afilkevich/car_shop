@@ -6,6 +6,8 @@ import com.shop.service.ModelService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.List;
 /**
  * Created by master on 2.5.17.
  */
+@Service
+@Transactional
 public class ModelServiceImpl implements ModelService {
 
     private static final Logger LOGGER= LogManager.getLogger();
