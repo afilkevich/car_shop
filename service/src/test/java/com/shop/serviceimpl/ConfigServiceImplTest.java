@@ -31,6 +31,7 @@ public class ConfigServiceImplTest {
     private static final String TYPE="Standart";
     private static final String WRONG_TYPE="Normal";
     private static final Config CONFIG=new Config("Apgrate","All inclusive");
+    private static final Config WRONG_CONFIG=new Config(8,"A","D");
     private static final Config UP_CONFIG=new Config(1,"Minimals","vent");
 
 
@@ -71,14 +72,55 @@ public class ConfigServiceImplTest {
         Assert.assertNotNull(config);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void findByNullType() throws Exception{
+        LOGGER.debug("ConfigServiceImpl test: findByNullType");
+        Config config=configService.findByType(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void findByWrongType() throws Exception{
+        LOGGER.debug("ConfigServiceImpl test: findByWrongType");
+        Config config=configService.findByType(WRONG_TYPE);
+    }
+
     @Test
     public void insert() throws Exception {
+     LOGGER.debug("ConfigServiceImpl test: insert");
+        configService.insert(CONFIG);
+        Config config=configService.findByType(CONFIG.getType());
+        Assert.assertNotNull(config);
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void insertNull() throws Exception{
+        LOGGER.debug("ConfigServiceImpl test: insertNull");
+        configService.insert(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void insertWrongConfig() throws Exception{
+        LOGGER.debug("ConfigServiceImpl test: insertWrongConfig");
+        configService.insert(WRONG_CONFIG);
     }
 
     @Test
     public void update() throws Exception {
+        LOGGER.debug("ConfigServiceImpl test: update");
+        configService.update(UP_CONFIG);
+        Assert.assertNotNull(configService.findByType(UP_CONFIG.getType()));
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void updateNull() throws Exception{
+        LOGGER.debug("ConfigServiceImpl test: updateNull");
+        configService.update(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void updateWrongConfig() throws Exception{
+        LOGGER.debug("ConfigServiceImpl test: updateWrongConfig");
+        configService.update(WRONG_CONFIG);
     }
 
 }
