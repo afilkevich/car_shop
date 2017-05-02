@@ -60,6 +60,7 @@ public class BrandServiceImpl implements BrandService {
     public void insert(Brand brand) {
         LOGGER.debug("BrandServiceimpl:insert",brand);
         Assert.notNull(brand);
+        Assert.isNull(brand.getId());
         Assert.hasText(brand.getName());
         brandMapper.insert(brand);
     }

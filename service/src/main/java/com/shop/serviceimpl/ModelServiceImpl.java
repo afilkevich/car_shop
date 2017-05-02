@@ -6,6 +6,7 @@ import com.shop.service.ModelService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -31,21 +32,40 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public Model findById(Integer id) {
-        return null;
+        LOGGER.debug("ModelServiceImpl: findById",id);
+        Assert.notNull(id);
+        Assert.isTrue(id!=0);
+        Model model=modelMapper.findById(id);
+        Assert.notNull(model);
+        return model;
     }
 
     @Override
     public Model findByName(String name) {
-        return null;
+        LOGGER.debug("ModelServiceImpl: findByName", name);
+        Assert.notNull(name);
+        Assert.hasText(name);
+        Model model=modelMapper.findByName(name);
+        Assert.notNull(model);
+        return model;
     }
 
     @Override
     public void insert(Model model) {
-
-    }
+        LOGGER.debug("ModelServiceImpl: insert",model);
+        Assert.notNull(model);
+        Assert.hasText(model.getName());
+        Assert.isNull(model.getId());
+        modelMapper.insert(model);
+        }
 
     @Override
     public void update(Model model) {
+        LOGGER.debug("ModelServiceImpl : update", model);
+        Assert.notNull(model);
+        Assert.notNull(modelMapper.findById(model.getId()));
+        Assert.hasText(model.getName());
+        modelMapper.update(model);
 
     }
 }

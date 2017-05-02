@@ -29,6 +29,7 @@ public class BrandServiceImplTest {
     private static final String NAME="Audi";
     private static final Integer ID=1;
     private static final Brand BRAND=new Brand("BMW");
+
     private static final Brand UP_BRAND=new Brand(2,"Toyota Corp.");
     private static final Brand EMPTY_BRAND=new Brand();
     private static final Brand WRONG_BRAND=new Brand(78,"TO");
@@ -99,6 +100,11 @@ public class BrandServiceImplTest {
     public void insertNullName() throws Exception{
         LOGGER.debug("BrandServiceIml test:insertNull");
         brandService.insert(EMPTY_BRAND);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void insertWrongBrand() throws Exception{
+        brandService.insert(WRONG_BRAND);
     }
 
     @Test
