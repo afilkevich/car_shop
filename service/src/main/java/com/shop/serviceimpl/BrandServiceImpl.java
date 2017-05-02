@@ -52,19 +52,26 @@ public class BrandServiceImpl implements BrandService {
         Assert.notNull(id);
         Assert.isTrue(id>0);
         Brand brand=brandMapper.findById(id);
-        if (brand==null){
-            throw new IllegalArgumentException();
-        }
+       Assert.notNull(brand);
         return brand;
     }
 
     @Override
     public void insert(Brand brand) {
-
+        LOGGER.debug("BrandServiceimpl:insert",brand);
+        Assert.notNull(brand);
+        Assert.hasText(brand.getName());
+        brandMapper.insert(brand);
     }
 
     @Override
     public void update(Brand brand) {
+        LOGGER.debug("BrandServiceImpl: update",brand);
+        Assert.notNull(brand);
+        Assert.notNull(brand.getId());
+        Assert.hasText(brand.getName());
+        Assert.notNull(brandMapper.findById(brand.getId()));
+        brandMapper.update(brand);
 
     }
 }
