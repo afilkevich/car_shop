@@ -13,4 +13,5 @@ public interface ShoppingCartService {
     void insert(ShoppingCart cart);
     void update(ShoppingCart cart);
     void delete(Integer id);
+    void calculatePrice(ShoppingCart cart);
 }

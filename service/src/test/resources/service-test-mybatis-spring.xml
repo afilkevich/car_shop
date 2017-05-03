@@ -78,5 +78,11 @@
         <property name="sqlSessionFactory" ref="sessionFactory" />
     </bean>
 
+    <bean id="shoppingCartService" class="com.shop.serviceimpl.ShoppingCartServiceImpl">
+        <property name="shoppingCartMapper" ref="shoppingCartMapper"/>
+        <property name="carService" ref="carService"/>
+        <property name="discountService" ref="discountService"/>
+    </bean>
+
 
 </beans>
