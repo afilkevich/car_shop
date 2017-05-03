@@ -4,6 +4,7 @@ import com.shop.dao.CarMapper;
 import com.shop.model.Car;
 import com.shop.service.BrandService;
 import com.shop.service.CarService;
+import com.shop.service.ConfigService;
 import com.shop.service.ModelService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,6 +32,13 @@ public class CarServiceImpl implements CarService {
 
     @Autowired
     ModelService modelService;
+
+    @Autowired
+    ConfigService configService;
+
+    public void setConfigService(ConfigService configService) {
+        this.configService = configService;
+    }
 
     public void setCarMapper(CarMapper carMapper) {
         this.carMapper = carMapper;
@@ -78,16 +86,39 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void insert(Car car) {
-
+        LOGGER.debug("CarServiceImpl:insert");
+        Assert.notNull(car);
+        Assert.isNull(car.getId());
+        Assert.notNull(brandService.findById(car.getIdBrand()));
+        Assert.notNull(modelService.findById(car.getIdModel()));
+        Assert.notNull(configService.findById(car.getIdConfig()));
+        Assert.notNull(car.getDateBuilder());
+        Assert.notNull(car.getPrice());
+        Assert.isTrue(car.getPrice()!=0);
+        carMapper.insert(car);
     }
 
     @Override
     public void update(Car car) {
-
+        LOGGER.debug("CarServiceImpl: update");
+        Assert.notNull(car);
+        Assert.notNull(car.getId());
+        Assert.notNull(carMapper.findById(car.getId()));
+        Assert.notNull(brandService.findById(car.getIdBrand()));
+        Assert.notNull(modelService.findById(car.getIdModel()));
+        Assert.notNull(configService.findById(car.getIdConfig()));
+        Assert.notNull(car.getDateBuilder());
+        Assert.notNull(car.getPrice());
+        Assert.isTrue(car.getPrice()!=0);
+        carMapper.update(car);
     }
 
     @Override
     public void delete(Integer id) {
+        LOGGER.debug("CarServiceImpl :delete");
+        Assert.notNull(id);
+        Assert.notNull(carMapper.findById(id));
+        carMapper.delete(id);
 
     }
 }

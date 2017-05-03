@@ -32,8 +32,10 @@ public class CarServiceImplTest {
     private static final Integer WRONG_ID_MODEL=8;
     private static final Integer ID=2;
     private static final Integer WRONG_ID=9;
+    private static final Integer PRICE=4590;
     private static final Car CAR=new Car(2,2,3, LocalDate.parse("2001-09-08"),3200);
-    private static final Car UP_CAR=new Car(2,1,1,1,LocalDate.parse("2001-11-10"),2000);
+    private static final Car WRONG_CAR=new Car(3,2,4,null,0);
+
 
 
     @Autowired
@@ -109,16 +111,63 @@ public class CarServiceImplTest {
 
     @Test
     public void insert() throws Exception {
+      LOGGER.debug("CarServiceImpl test:insert");
+      carService.insert(CAR);
+      List<Car> list=carService.findAll();
+      Assert.assertTrue(list.size()==3);
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void insertNull() throws Exception{
+        LOGGER.debug("CarServiceImpl test: insertNull");
+        carService.insert(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void insertWrongCar() throws Exception{
+        LOGGER.debug("CarServiceImpl test: insertWrongCar");
+        carService.insert(WRONG_CAR);
     }
 
     @Test
     public void update() throws Exception {
+      LOGGER.debug("CarServiceImpl test: update");
+      Car car=carService.findById(ID);
+      car.setPrice(PRICE);
+      carService.update(car);
+      Assert.assertEquals(PRICE,carService.findById(ID).getPrice());
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void updateNull() throws Exception{
+        LOGGER.debug("CarServiceImpl test: updateNull");
+        carService.update(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void updateWrongCar() throws Exception{
+        LOGGER.debug("CarServiceImpl test: updateWrongCar");
+        carService.update(WRONG_CAR);
     }
 
     @Test
     public void delete() throws Exception {
+        LOGGER.debug("CarServiceImpl test: delete");
+        carService.delete(ID);
+        List<Car> list=carService.findAll();
+        Assert.assertTrue(list.size()<2);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deleteNull() throws Exception{
+        LOGGER.debug("CarServiceImpl test: deleteNull");
+        carService.delete(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deleteWrongId() throws Exception{
+        LOGGER.debug("CarServiceImpl test: deleteWrongId");
+        carService.delete(WRONG_ID);
 
     }
 
