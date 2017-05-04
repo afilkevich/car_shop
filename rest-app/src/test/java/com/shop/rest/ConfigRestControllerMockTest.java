@@ -1,8 +1,8 @@
 package com.shop.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shop.model.Model;
-import com.shop.service.ModelService;
+import com.shop.model.Config;
+import com.shop.service.ConfigService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
@@ -34,104 +34,103 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:rest-spring-mocktest.xml"})
-public class ModelRestControllerMockTest {
+public class ConfigRestControllerMockTest {
     private static final Logger LOGGER= LogManager.getLogger();
     @Resource
-    private ModelRestController modelController;
+    private ConfigRestController configController;
 
     private MockMvc mockMvc;
 
     @Autowired
-    private ModelService modelService;
+    private ConfigService configService;
 
-    private static final Model MODEL=new Model(3,"Jeep");
+    private static final Config CONFIG=new Config(3,"Stand","Desc");
 
     @Before
     public void setUp() throws Exception{
 
-        mockMvc=standaloneSetup(modelController)
+        mockMvc=standaloneSetup(configController)
                 .setMessageConverters(new MappingJackson2HttpMessageConverter())
                 .build();
-
     }
 
     @After
     public void tearDown() throws Exception {
-        verify(modelService);
-        reset(modelService);
+        verify(configService);
+        reset(configService);
+    }
+
+    @Test
+    public void findAllConfig() throws Exception {
+        LOGGER.debug("ConfigRestControllerMockTest:findAllConfig");
+        expect(configService.findAll()).andReturn(Arrays.<Config>asList(CONFIG));
+        replay(configService);
+
+        mockMvc.perform(
+                get("/configs")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
 
     }
 
-
     @Test
-    public void findAllModel() throws Exception {
-        LOGGER.debug("ModelRestControllerMockTest:findAllModel");
-        expect(modelService.findAll()).andReturn(Arrays.<Model>asList(MODEL));
-        replay(modelService);
+    public void findConfigByType() throws Exception {
+        LOGGER.debug("ConfigRestControllerMockTest:findConfigByType");
+        expect(configService.findByType(CONFIG.getType())).andReturn(CONFIG);
+        replay(configService);
 
         mockMvc.perform(
-                get("/models")
+                get("/config/type/Stand")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void findModelByName() throws Exception {
-        LOGGER.debug("ModelRestControllerMockTest:findModelByName");
-        expect(modelService.findByName(MODEL.getName())).andReturn(MODEL);
-        replay(modelService);
+    public void findConfigById() throws Exception {
+        LOGGER.debug("ConfigRestControllerMockTest:findConfigById");
+        expect(configService.findById(CONFIG.getId())).andReturn(CONFIG);
+        replay(configService);
 
         mockMvc.perform(
-                get("/model/name/Jeep")
+                get("/config/3")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void findModelById() throws Exception {
-        LOGGER.debug("ModelRestControllerMockTest:findModelById");
-        expect(modelService.findById(MODEL.getId())).andReturn(MODEL);
-        replay(modelService);
+    public void addConfig() throws Exception {
+        LOGGER.debug("ConfigRestControllerMockTest:addConfig");
+        expect(configService.insert(anyObject(Config.class))).andReturn(3);
+        replay(configService);
+
+        String config=new ObjectMapper().writeValueAsString(new Config("LUX","DESc"));
 
         mockMvc.perform(
-                get("/model/3")
-                        .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void addModel() throws Exception {
-        LOGGER.debug("ModelRestControllerMockTest:addModel");
-        expect(modelService.insert(anyObject(Model.class))).andReturn(3);
-        replay(modelService);
-
-        String model=new ObjectMapper().writeValueAsString(new Model("mod"));
-
-        mockMvc.perform(
-                post("/model")
+                post("/config")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(model))
+                        .content(config))
                 .andDo(print()).andExpect(status().isCreated());
     }
 
     @Test
-    public void updateModel() throws Exception {
-        LOGGER.debug("ModelRestControllerMockTest:updateModel");
-        expect(modelService.update(anyObject(Model.class))).andReturn(3);
-        replay(modelService);
+    public void updateConfig() throws Exception {
+        LOGGER.debug("ConfigRestControllerMockTest:updateConfig");
+        expect(configService.update(anyObject(Config.class))).andReturn(3);
+        replay(configService);
 
-        String model=new ObjectMapper().writeValueAsString(new Model(6,"mode"));
+        String config=new ObjectMapper().writeValueAsString(CONFIG);
 
         mockMvc.perform(
-                put("/model")
+                put("/config")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(model))
+                        .content(config))
                 .andDo(print()).andExpect(status().isAccepted());
+
     }
 
 }

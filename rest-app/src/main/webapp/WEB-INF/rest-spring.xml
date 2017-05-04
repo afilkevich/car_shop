@@ -70,6 +70,15 @@
         <property name="modelMapper" ref="modelMapper"/>
     </bean>
 
+    <bean id="configMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.shop.dao.ConfigMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="configService" class="com.shop.serviceimpl.ConfigServiceImpl">
+        <property name="configMapper" ref="configMapper"/>
+    </bean>
+
 
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
