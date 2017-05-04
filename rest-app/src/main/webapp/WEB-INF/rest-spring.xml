@@ -88,6 +88,17 @@
         <property name="discountMapper" ref="discountMapper"/>
     </bean>
 
+    <bean id="carMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.shop.dao.CarMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="carService" class="com.shop.serviceimpl.CarServiceImpl">
+        <property name="carMapper" ref="carMapper"/>
+        <property name="brandService" ref="brandService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="configService" ref="configService"/>
+    </bean>
 
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">

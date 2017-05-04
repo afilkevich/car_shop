@@ -21,6 +21,10 @@
         <constructor-arg value="com.shop.service.DiscountService"/>
     </bean>
 
+    <bean id="carService" class="org.easymock.EasyMock" factory-method="createMock">
+        <constructor-arg value="com.shop.service.CarService"/>
+    </bean>
+
 
 
     <context:component-scan base-package="com.shop.rest"/>
