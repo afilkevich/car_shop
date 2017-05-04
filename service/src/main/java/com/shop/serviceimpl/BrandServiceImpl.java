@@ -57,22 +57,24 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void insert(Brand brand) {
+    public Integer insert(Brand brand) {
         LOGGER.debug("BrandServiceimpl:insert",brand);
         Assert.notNull(brand);
         Assert.isNull(brand.getId());
         Assert.hasText(brand.getName());
         brandMapper.insert(brand);
+        return brandMapper.findByName(brand.getName()).getId();
     }
 
     @Override
-    public void update(Brand brand) {
+    public Integer update(Brand brand) {
         LOGGER.debug("BrandServiceImpl: update",brand);
         Assert.notNull(brand);
         Assert.notNull(brand.getId());
         Assert.hasText(brand.getName());
         Assert.notNull(brandMapper.findById(brand.getId()));
         brandMapper.update(brand);
+        return brand.getId();
 
     }
 }

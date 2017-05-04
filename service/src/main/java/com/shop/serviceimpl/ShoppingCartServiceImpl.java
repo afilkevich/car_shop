@@ -61,7 +61,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void insert(ShoppingCart cart) {
+    public Integer insert(ShoppingCart cart) {
         LOGGER.debug("ShoppingCartServiceImpl:insert");
         Assert.notNull(cart);
         Assert.isNull(cart.getId());
@@ -72,10 +72,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         Assert.isNull(cart.getPrice());
         calculatePrice(cart);
         shoppingCartMapper.insert(cart);
+        List<ShoppingCart>list=shoppingCartMapper.findAll();
+        return list.get(list.size()-1).getId();
     }
 
     @Override
-    public void update(ShoppingCart cart) {
+    public Integer update(ShoppingCart cart) {
         LOGGER.debug("ShoppingCartServiceImpl:update");
         Assert.notNull(cart);
         Assert.notNull(cart.getId());
@@ -85,14 +87,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         Assert.notNull(cart.getIdCar());
         calculatePrice(cart);
         shoppingCartMapper.update(cart);
+        return cart.getId();
     }
 
     @Override
-    public void delete(Integer id) {
+    public Integer delete(Integer id) {
         LOGGER.debug("ShoppingCartImpl test:delete");
         Assert.notNull(id);
         Assert.notNull(shoppingCartMapper.findById(id));
         shoppingCartMapper.delete(id);
+        return id;
     }
 
     @Override

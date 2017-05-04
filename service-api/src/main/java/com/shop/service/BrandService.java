@@ -11,6 +11,6 @@ public interface BrandService {
      List<Brand> findAll();
      Brand findByName(String name);
      Brand findById(Integer id);
-     void insert(Brand brand);
-     void update(Brand brand);
+     Integer insert(Brand brand);
+     Integer update(Brand brand);
 }

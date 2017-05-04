@@ -55,21 +55,23 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
-    public void insert(Model model) {
+    public Integer insert(Model model) {
         LOGGER.debug("ModelServiceImpl: insert",model);
         Assert.notNull(model);
         Assert.hasText(model.getName());
         Assert.isNull(model.getId());
         modelMapper.insert(model);
+        return modelMapper.findByName(model.getName()).getId();
         }
 
     @Override
-    public void update(Model model) {
+    public Integer update(Model model) {
         LOGGER.debug("ModelServiceImpl : update", model);
         Assert.notNull(model);
         Assert.notNull(modelMapper.findById(model.getId()));
         Assert.hasText(model.getName());
         modelMapper.update(model);
+        return model.getId();
 
     }
 }

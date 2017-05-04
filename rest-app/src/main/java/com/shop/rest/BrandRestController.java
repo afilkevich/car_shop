@@ -57,18 +57,18 @@ public class BrandRestController {
     @ResponseBody
     @ResponseStatus(value = HttpStatus.CREATED)
     @RequestMapping(value="brand",method = RequestMethod.POST)
-    public void addBrand(@RequestBody Brand brand){
+    public Integer addBrand(@RequestBody Brand brand){
         LOGGER.debug("BrandRestController:addBrand",brand);
-        brandService.insert(brand);
+         return brandService.insert(brand);
     }
 
     // curl -H "Content-Type: application/json" -X PUT -d '{"id":"2","name":"BMW"}' -v localhost:8088/brand
     @ResponseBody
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     @RequestMapping(value = "brand", method = RequestMethod.PUT)
-    public void updateBrand(@RequestBody Brand brand){
+    public Integer updateBrand(@RequestBody Brand brand){
         LOGGER.debug("BrandRestController:updateBrand",brand);
-        brandService.update(brand);
+         return brandService.update(brand);
     }
 
 

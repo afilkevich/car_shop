@@ -54,17 +54,18 @@ public class ConfigServiceImpl implements ConfigService {
     }
 
     @Override
-    public void insert(Config config) {
+    public Integer insert(Config config) {
         LOGGER.debug("ConfigServiceImpl: insert", config);
         Assert.notNull(config);
         Assert.isNull(config.getId());
         Assert.hasText(config.getType());
         Assert.hasText(config.getDescription());
         configMapper.insert(config);
+        return configMapper.findByType(config.getType()).getId();
     }
 
     @Override
-    public void update(Config config) {
+    public Integer update(Config config) {
         LOGGER.debug("ConfigServiceImpl:update", config);
         Assert.notNull(config);
         Assert.notNull(config.getId());
@@ -72,6 +73,7 @@ public class ConfigServiceImpl implements ConfigService {
         Assert.hasText(config.getType());
         Assert.hasText(config.getDescription());
         configMapper.update(config);
+        return config.getId();
 
     }
 }

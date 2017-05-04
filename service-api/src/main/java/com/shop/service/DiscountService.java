@@ -11,6 +11,6 @@ public interface DiscountService {
     List<Discount> findAll();
     Discount findByValue(Integer value);
     Discount findById(Integer id);
-    void insert(Discount discount);
-    void update(Discount discount);
+    Integer insert(Discount discount);
+    Integer update(Discount discount);
 }

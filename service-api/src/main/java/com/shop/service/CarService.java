@@ -12,7 +12,7 @@ public interface CarService {
     List<Car> findByIdBrand(Integer idBrand);
     List<Car> findByIdModel(Integer idModel);
     Car findById(Integer id);
-    void insert(Car car);
-    void update(Car car);
-    void delete(Integer id);
+    Integer insert(Car car);
+    Integer update(Car car);
+    Integer delete(Integer id);
 }

@@ -10,8 +10,8 @@ import java.util.List;
 public interface ShoppingCartService {
     List<ShoppingCart> findAll();
     ShoppingCart findById(Integer id);
-    void insert(ShoppingCart cart);
-    void update(ShoppingCart cart);
-    void delete(Integer id);
+    Integer insert(ShoppingCart cart);
+    Integer update(ShoppingCart cart);
+    Integer delete(Integer id);
     void calculatePrice(ShoppingCart cart);
 }

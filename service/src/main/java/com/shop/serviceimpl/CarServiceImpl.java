@@ -85,7 +85,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void insert(Car car) {
+    public Integer insert(Car car) {
         LOGGER.debug("CarServiceImpl:insert");
         Assert.notNull(car);
         Assert.isNull(car.getId());
@@ -96,10 +96,12 @@ public class CarServiceImpl implements CarService {
         Assert.notNull(car.getPrice());
         Assert.isTrue(car.getPrice()!=0);
         carMapper.insert(car);
+        List<Car>list=carMapper.findAll();
+        return list.get(list.size()-1).getId();
     }
 
     @Override
-    public void update(Car car) {
+    public Integer update(Car car) {
         LOGGER.debug("CarServiceImpl: update");
         Assert.notNull(car);
         Assert.notNull(car.getId());
@@ -111,14 +113,16 @@ public class CarServiceImpl implements CarService {
         Assert.notNull(car.getPrice());
         Assert.isTrue(car.getPrice()!=0);
         carMapper.update(car);
+        return car.getId();
     }
 
     @Override
-    public void delete(Integer id) {
+    public Integer delete(Integer id) {
         LOGGER.debug("CarServiceImpl :delete");
         Assert.notNull(id);
         Assert.notNull(carMapper.findById(id));
         carMapper.delete(id);
+        return id;
 
     }
 }

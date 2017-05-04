@@ -55,21 +55,23 @@ public class DiscountServiceImpl implements DiscountService {
     }
 
     @Override
-    public void insert(Discount discount) {
+    public Integer insert(Discount discount) {
         LOGGER.debug("DiscountServiceImpl : insert", discount);
         Assert.notNull(discount);
         Assert.isNull(discount.getId());
         Assert.notNull(discount.getValueDiscount());
         discountMapper.insert(discount);
+        return discountMapper.findByValue(discount.getValueDiscount()).getId();
     }
 
     @Override
-    public void update(Discount discount) {
+    public Integer update(Discount discount) {
         LOGGER.debug("DiscountServiceImpl :update",discount);
         Assert.notNull(discount);
         Assert.notNull(discountMapper.findById(discount.getId()));
         Assert.notNull(discount.getValueDiscount());
         discountMapper.update(discount);
+        return discount.getId();
 
     }
 }
