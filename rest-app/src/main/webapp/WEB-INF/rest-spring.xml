@@ -100,6 +100,17 @@
         <property name="configService" ref="configService"/>
     </bean>
 
+    <bean id="shoppingCartMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.shop.dao.ShoppingCartMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="shoppingCartService" class="com.shop.serviceimpl.ShoppingCartServiceImpl">
+        <property name="shoppingCartMapper" ref="shoppingCartMapper"/>
+        <property name="discountService" ref="discountService"/>
+          </bean>
+
+
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
