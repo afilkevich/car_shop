@@ -79,6 +79,15 @@
         <property name="configMapper" ref="configMapper"/>
     </bean>
 
+    <bean id="discountMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.shop.dao.DiscountMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="discountService" class="com.shop.serviceimpl.DiscountServiceImpl">
+        <property name="discountMapper" ref="discountMapper"/>
+    </bean>
+
 
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
