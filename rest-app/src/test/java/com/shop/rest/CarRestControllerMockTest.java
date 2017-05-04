@@ -130,7 +130,7 @@ public class CarRestControllerMockTest {
 
     @Test
     public void updateCar() throws Exception {
-        LOGGER.debug("CarRestControllerMockTest:addCar");
+        LOGGER.debug("CarRestControllerMockTest:updateCar");
         expect(carService.update(anyObject(Car.class))).andReturn(3);
         replay(carService);
 
