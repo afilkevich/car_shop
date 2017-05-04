@@ -9,6 +9,10 @@
         <constructor-arg value="com.shop.service.BrandService"/>
     </bean>
 
+    <bean id="modelService" class="org.easymock.EasyMock" factory-method="createMock">
+        <constructor-arg value="com.shop.service.ModelService"/>
+    </bean>
+
 
     <context:component-scan base-package="com.shop.rest"/>
 
