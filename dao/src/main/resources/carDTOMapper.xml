@@ -24,9 +24,9 @@
         car.date_builder as"dateBuilder",
         car.price as"price"
         from car_shop.car car
-        inner join car_shop.brand brand on car.id_brand=brand.id
-        inner join car_shop.model model on car.id_model=model.id
-        inner join car_shop.configuration config on car.id_configuration=config.id
+         join car_shop.brand brand on car.id_brand=brand.id
+         join car_shop.model model on car.id_model=model.id
+         join car_shop.configuration config on car.id_configuration=config.id
 
     </select>
 
