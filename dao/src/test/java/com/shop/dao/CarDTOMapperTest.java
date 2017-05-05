@@ -1,6 +1,7 @@
 package com.shop.dao;
 
 import com.shop.model.CarDTO;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,34 @@ public class CarDTOMapperTest {
 
     @Autowired
     CarDTOMapper carDTOMapper;
+
     @Test
     public void findAll() throws Exception{
         List<CarDTO>list=carDTOMapper.findAll();
         for (CarDTO carDTO:list){
             System.out.println(carDTO);
         }
+        Assert.assertTrue(list.size()>0);
     }
+
+    @Test
+    public void findByBrand() throws Exception{
+        List<CarDTO>list=carDTOMapper.findByBrand("Toyota");
+        Assert.assertTrue(list.size()>0);
+
+    }
+
+    @Test
+    public void findByModel() throws Exception{
+        List<CarDTO>list=carDTOMapper.findByModel("Sedan");
+        Assert.assertTrue(list.size()>0);
+    }
+
+    @Test
+    public void findByBrandAndModel() throws Exception{
+        List<CarDTO>list=carDTOMapper.findByBrandAndModel("Toyota","Sedan");
+        Assert.assertTrue(list.size()>0);
+    }
+
 
 }

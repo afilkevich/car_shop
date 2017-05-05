@@ -15,19 +15,63 @@
     </resultMap>
 
     <select id="findAll" resultMap="carDTOResultMap">
-      select
-        car.id as "id",
-        brand.name_brand as "brandName",
-        model.name_model as "modelName",
-        config.type_configuration as "configName",
-        config.description_configuration as "configDescription",
-        car.date_builder as"dateBuilder",
-        car.price as"price"
-        from car_shop.car car
-         join car_shop.brand brand on car.id_brand=brand.id
-         join car_shop.model model on car.id_model=model.id
-         join car_shop.configuration config on car.id_configuration=config.id
-
+      SELECT
+        car.id ,
+        brand.name_brand ,
+        model.name_model ,
+        config.type_configuration ,
+        config.description_configuration,
+        car.date_builder , car.price
+        FROM car_shop.car car
+         JOIN car_shop.brand brand ON car.id_brand=brand.id
+         JOIN car_shop.model model ON car.id_model=model.id
+         JOIN car_shop.configuration config ON car.id_configuration=config.id
     </select>
 
-    </mapper>
+    <select id="findByBrand"  resultMap="carDTOResultMap">
+        SELECT
+        car.id ,
+        brand.name_brand ,
+        model.name_model ,
+        config.type_configuration ,
+        config.description_configuration ,
+        car.date_builder ,  car.price
+        FROM car_shop.car car
+         LEFT JOIN car_shop.brand brand ON car.id_brand=brand.id
+         LEFT JOIN car_shop.model model ON car.id_model=model.id
+         LEFT JOIN car_shop.configuration config ON car.id_configuration=config.id
+        WHERE brand.name_brand=#{brandName}
+    </select>
+
+    <select id="findByModel"  resultMap="carDTOResultMap">
+        SELECT
+        car.id ,
+        brand.name_brand ,
+        model.name_model ,
+        config.type_configuration ,
+        config.description_configuration ,
+        car.date_builder ,  car.price
+        FROM car_shop.car car
+        LEFT JOIN car_shop.brand brand ON car.id_brand=brand.id
+        LEFT JOIN car_shop.model model ON car.id_model=model.id
+        LEFT JOIN car_shop.configuration config ON car.id_configuration=config.id
+        WHERE model.name_model=#{modelName}
+    </select>
+
+    <select id="findByBrandAndModel"  resultMap="carDTOResultMap">
+        SELECT
+        car.id ,
+        brand.name_brand ,
+        model.name_model ,
+        config.type_configuration ,
+        config.description_configuration ,
+        car.date_builder ,  car.price
+        FROM car_shop.car car
+        LEFT JOIN car_shop.brand brand ON car.id_brand=brand.id
+        LEFT JOIN car_shop.model model ON car.id_model=model.id
+        LEFT JOIN car_shop.configuration config ON car.id_configuration=config.id
+        WHERE brand.name_brand=#{brandName} AND model.name_model=#{modelName}
+    </select>
+
+
+</mapper>

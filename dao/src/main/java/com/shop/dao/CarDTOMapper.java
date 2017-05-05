@@ -1,6 +1,8 @@
 package com.shop.dao;
 
 import com.shop.model.CarDTO;
+import org.apache.ibatis.annotations.Param;
+
 
 import java.util.List;
 
@@ -9,4 +11,7 @@ import java.util.List;
  */
 public interface CarDTOMapper {
     List<CarDTO> findAll();
+    List<CarDTO> findByBrand(String brand);
+    List<CarDTO> findByModel(String model);
+    List<CarDTO> findByBrandAndModel(@Param("brandName") String brand,@Param("modelName") String model);
 }
