@@ -32,6 +32,15 @@ public class CarDTO {
     public CarDTO() {
     }
 
+    public CarDTO(String brandName, String modelName, String configName, String configDescription, LocalDate dateBuilder, Integer price) {
+        this.brandName = brandName;
+        this.modelName = modelName;
+        this.configName = configName;
+        this.configDescription = configDescription;
+        this.dateBuilder = dateBuilder;
+        this.price = price;
+    }
+
     public Integer getId() {
         return id;
     }

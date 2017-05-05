@@ -17,4 +17,5 @@ public interface CarService {
     Integer insert(CarDTO car);
     Integer update(CarDTO car);
     Integer delete(Integer id);
+    Car convertToCar(CarDTO carDTO);
 }

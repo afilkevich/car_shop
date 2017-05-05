@@ -34,10 +34,8 @@ public class CarServiceImplTest {
     private static final Integer ID=2;
     private static final Integer WRONG_ID=9;
     private static final Integer PRICE=4590;
-    private static final Car CAR=new Car(2,2,3, LocalDate.parse("2001-09-08"),3200);
-    private static final Car WRONG_CAR=new Car(3,2,4,null,0);
-
-
+    private static final CarDTO CAR_DTO=new CarDTO("Toyota","Sedan","lux","climat-control", LocalDate.parse("2001-09-08"),3200);
+    private static final CarDTO WRONG_CARDTO=new CarDTO(1,"Toyota","Sedan","lux","climat-control", LocalDate.parse("2001-09-08"),3200);
 
     @Autowired
     CarService carService;
@@ -133,11 +131,26 @@ public class CarServiceImplTest {
         Assert.assertTrue(list.size()>0);
     }
 
-    /*@Test
+    @Test
+    public void convertToCar() throws Exception{
+        LOGGER.debug("CarServiceImpl test: convertToCar");
+        Car car=carService.convertToCar(CAR_DTO);
+        System.out.println(car);
+        Assert.assertNotNull(car);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void convertToNullCar() throws Exception{
+        LOGGER.debug("CarServiceImpl test: convertToCar");
+        Car car=carService.convertToCar(null);
+        Assert.assertNotNull(car);
+    }
+
+    @Test
     public void insert() throws Exception {
       LOGGER.debug("CarServiceImpl test:insert");
-      carService.insert(CAR);
-      List<Car> list=carService.findAll();
+      carService.insert(CAR_DTO);
+      List<CarDTO> list=carService.findAll();
       Assert.assertTrue(list.size()==3);
     }
 
@@ -150,15 +163,15 @@ public class CarServiceImplTest {
     @Test(expected = IllegalArgumentException.class)
     public void insertWrongCar() throws Exception{
         LOGGER.debug("CarServiceImpl test: insertWrongCar");
-        carService.insert(WRONG_CAR);
+        carService.insert(WRONG_CARDTO);
     }
 
     @Test
     public void update() throws Exception {
       LOGGER.debug("CarServiceImpl test: update");
-      Car car=carService.findById(ID);
-      car.setPrice(PRICE);
-      carService.update(car);
+      CarDTO cart=carService.findById(ID);
+      cart.setPrice(PRICE);
+      carService.update(cart);
       Assert.assertEquals(PRICE,carService.findById(ID).getPrice());
     }
 
@@ -171,14 +184,14 @@ public class CarServiceImplTest {
     @Test(expected = IllegalArgumentException.class)
     public void updateWrongCar() throws Exception{
         LOGGER.debug("CarServiceImpl test: updateWrongCar");
-        carService.update(WRONG_CAR);
+        carService.update(CAR_DTO);
     }
 
     @Test
     public void delete() throws Exception {
         LOGGER.debug("CarServiceImpl test: delete");
         carService.delete(ID);
-        List<Car> list=carService.findAll();
+        List<CarDTO> list=carService.findAll();
         Assert.assertTrue(list.size()<2);
     }
 
@@ -194,5 +207,5 @@ public class CarServiceImplTest {
         carService.delete(WRONG_ID);
 
     }
-*/
+
 }

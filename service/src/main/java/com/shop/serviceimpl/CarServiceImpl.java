@@ -100,17 +100,7 @@ public class CarServiceImpl implements CarService {
         LOGGER.debug("CarServiceImpl:insert");
         Assert.notNull(cart);
         Assert.isNull(cart.getId());
-        Car car=new Car();
-
-        car.setIdBrand(brandService.findByName(cart.getBrandName()).getId());
-
-
-        car.setIdModel(modelService.findByName(cart.getModelName()).getId());
-
-        car.setIdConfig(configService.findByType(cart.getConfigName()).getId());
-        car.setDateBuilder(cart.getDateBuilder());
-        car.setPrice(car.getPrice());
-        carMapper.insert(car);
+        carMapper.insert(convertToCar(cart));
         List<Car>list=carMapper.findAll();
         return list.get(list.size()-1).getId();
     }
@@ -119,18 +109,9 @@ public class CarServiceImpl implements CarService {
     public Integer update(CarDTO cart) {
         LOGGER.debug("CarServiceImpl: update");
         Assert.notNull(cart);
-
-        Car car=carMapper.findById(cart.getId());
-
-        car.setIdBrand(brandService.findByName(cart.getBrandName()).getId());
-        car.setIdModel(modelService.findByName(cart.getModelName()).getId());
-        car.setIdConfig(configService.findByType(cart.getConfigName()).getId());
-        car.setDateBuilder(cart.getDateBuilder());
-
-        car.setPrice(cart.getPrice());
-
-        carMapper.update(car);
-        return car.getId();
+       Assert.notNull(cart.getId());
+        carMapper.update(convertToCar(cart));
+        return cart.getId();
     }
 
     @Override
@@ -141,5 +122,22 @@ public class CarServiceImpl implements CarService {
         carMapper.delete(id);
         return id;
 
+    }
+
+    @Override
+    public Car convertToCar(CarDTO carDTO) {
+        LOGGER.debug("CarServiceImpl:convertToCar()");
+        Car car=new Car();
+        Assert.notNull(carDTO);
+        car.setId(carDTO.getId());
+        Assert.notNull(brandService.findByName(carDTO.getBrandName()));
+        car.setIdBrand(brandService.findByName(carDTO.getBrandName()).getId());
+        Assert.notNull(modelService.findByName(carDTO.getModelName()));
+        car.setIdModel(modelService.findByName(carDTO.getModelName()).getId());
+        Assert.notNull(configService.findByType(carDTO.getConfigName()));
+        car.setIdConfig(configService.findByType(carDTO.getConfigName()).getId());
+        car.setDateBuilder(carDTO.getDateBuilder());
+        car.setPrice(carDTO.getPrice());
+        return car;
     }
 }
