@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.ShoppingCartDTOMapper">
+
+    <resultMap id="shoppingCartDTOResultMap" type="ShoppingCartDTO">
+        <id property="id" column="id" />
+        <result property="idCar" column="id_car" />
+        <result property="valueDiscount" column="value_discount" />
+        <result property="amountCar" column="amount_car" />
+        <result property="price" column="price_cart" />
+
+    </resultMap>
+
+    <select id="findAll" resultMap="shoppingCartDTOResultMap">
+        SELECT
+        cart.id ,
+        cart.id_car ,
+        discount.value_discount ,
+        cart.amount_car ,
+        cart.price_cart
+        FROM car_shop.shopping_cart cart
+        JOIN car_shop.discount discount ON cart.id_discount=discount.id
+    </select>
+
+    <select id="findById" resultMap="shoppingCartDTOResultMap">
+        SELECT
+        cart.id ,
+        cart.id_car ,
+        discount.value_discount ,
+        cart.amount_car ,
+        cart.price_cart
+        FROM car_shop.shopping_cart cart
+       LEFT  JOIN car_shop.discount discount ON cart.id_discount=discount.id
+        WHERE cart.id=#{id}
+
+    </select>
+    </mapper>
