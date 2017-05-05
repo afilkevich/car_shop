@@ -1,6 +1,8 @@
 package com.shop.dao;
 
 import com.shop.model.CarDTO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,44 +22,47 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"classpath*:dao-test-mybatis-spring.xml"})
 @Transactional
 public class CarDTOMapperTest {
+    private static final Logger LOGGER= LogManager.getLogger();
+    private static final String BRAND="Toyota";
+    private static final Integer ID=1;
+    private static final String MODEL="Sedan";
 
     @Autowired
     CarDTOMapper carDTOMapper;
 
     @Test
     public void findAll() throws Exception{
+        LOGGER.debug("CarDTOMapper test: findAll()");
         List<CarDTO>list=carDTOMapper.findAll();
-        for (CarDTO carDTO:list){
-            System.out.println(carDTO);
-        }
+
         Assert.assertTrue(list.size()>0);
     }
 
     @Test
     public void findByBrand() throws Exception{
-        List<CarDTO>list=carDTOMapper.findByBrand("Toyota");
+        LOGGER.debug("CarDTOMapper test: findByBrand()");
+        List<CarDTO>list=carDTOMapper.findByBrand(BRAND);
         Assert.assertTrue(list.size()>0);
-
     }
 
     @Test
     public void findByModel() throws Exception{
-        List<CarDTO>list=carDTOMapper.findByModel("Sedan");
+        LOGGER.debug("CarDtoMapper test: findByModel()");
+        List<CarDTO>list=carDTOMapper.findByModel(MODEL);
         Assert.assertTrue(list.size()>0);
     }
 
     @Test
     public void findByBrandAndModel() throws Exception{
-        List<CarDTO>list=carDTOMapper.findByBrandAndModel("Toyta","Sedan");
+        LOGGER.debug("CarDtoMapper test: findByBrandAndModel()");
+        List<CarDTO>list=carDTOMapper.findByBrandAndModel(BRAND,MODEL);
         Assert.assertTrue(list.size()>0);
     }
 
     @Test
     public void findById()throws Exception{
-        CarDTO carDTO=carDTOMapper.findById(1);
+        LOGGER.debug("CarDTOMapper test: findById()");
+        CarDTO carDTO=carDTOMapper.findById(ID);
         Assert.assertNotNull(carDTO);
     }
-
-
-
 }
