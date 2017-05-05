@@ -66,6 +66,12 @@
         <property name="sqlSessionFactory" ref="sessionFactory" />
     </bean>
 
+    <bean id="carDTOMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.shop.dao.CarDTOMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
+
     <bean id="carService" class="com.shop.serviceimpl.CarServiceImpl">
         <property name="carMapper" ref="carMapper"/>
         <property name="brandService" ref="brandService"/>

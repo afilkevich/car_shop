@@ -1,6 +1,7 @@
 package com.shop.service;
 
 import com.shop.model.ShoppingCart;
+import com.shop.model.ShoppingCartDTO;
 
 import java.util.List;
 
@@ -10,8 +11,8 @@ import java.util.List;
 public interface ShoppingCartService {
     List<ShoppingCart> findAll();
     ShoppingCart findById(Integer id);
-    Integer insert(ShoppingCart cart);
-    Integer update(ShoppingCart cart);
+    Integer insert(ShoppingCart cartDTO);
+    Integer update(ShoppingCart cartDTO);
     Integer delete(Integer id);
-    void calculatePrice(ShoppingCart cart);
+    void calculatePrice(ShoppingCart cartDTO);
 }

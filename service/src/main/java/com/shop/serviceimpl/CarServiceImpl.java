@@ -1,7 +1,9 @@
 package com.shop.serviceimpl;
 
+import com.shop.dao.CarDTOMapper;
 import com.shop.dao.CarMapper;
 import com.shop.model.Car;
+import com.shop.model.CarDTO;
 import com.shop.service.BrandService;
 import com.shop.service.CarService;
 import com.shop.service.ConfigService;
@@ -26,6 +28,9 @@ public class CarServiceImpl implements CarService {
 
      @Autowired
     CarMapper carMapper;
+
+    @Autowired
+    CarDTOMapper carDTOMapper;
 
     @Autowired
     BrandService brandService;
@@ -53,65 +58,78 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> findAll() {
+    public List<CarDTO> findAll() {
         LOGGER.debug("CarServiceImpl:findAll()");
-        return carMapper.findAll();
+        return carDTOMapper.findAll();
     }
 
     @Override
-    public List<Car> findByIdBrand(Integer idBrand) {
+    public List<CarDTO> findByBrand(String brand) {
         LOGGER.debug("CarServiceImpl: findIdBrand()");
-        Assert.notNull(idBrand);
-        Assert.notNull(brandService.findById(idBrand));
-        return carMapper.findByIdBrand(idBrand);
+        Assert.notNull(brand);
+
+        return carDTOMapper.findByBrand(brand);
     }
 
     @Override
-    public List<Car> findByIdModel(Integer idModel) {
+    public List<CarDTO> findByModel(String model) {
         LOGGER.debug("CarServiceImpl:findIdModel");
-        Assert.notNull(idModel);
-        Assert.notNull(modelService.findById(idModel));
-        return carMapper.findByIdModel(idModel);
+        Assert.notNull(model);
+
+        return carDTOMapper.findByModel(model);
     }
 
     @Override
-    public Car findById(Integer id) {
+    public List<CarDTO> findByBrandAndModel(String brand, String model) {
+        LOGGER.debug("CarServiceImpl: findByBrandAndModel");
+        return carDTOMapper.findByBrandAndModel(brand,model);
+
+    }
+
+    @Override
+    public CarDTO findById(Integer id) {
         LOGGER.debug("CarServiceImpl:findById");
         Assert.notNull(id);
         Assert.isTrue(id>0);
-        Car car=carMapper.findById(id);
+        CarDTO car=carDTOMapper.findById(id);
         Assert.notNull(car);
         return car;
     }
 
     @Override
-    public Integer insert(Car car) {
+    public Integer insert(CarDTO cart) {
         LOGGER.debug("CarServiceImpl:insert");
-        Assert.notNull(car);
-        Assert.isNull(car.getId());
-        Assert.notNull(brandService.findById(car.getIdBrand()));
-        Assert.notNull(modelService.findById(car.getIdModel()));
-        Assert.notNull(configService.findById(car.getIdConfig()));
-        Assert.notNull(car.getDateBuilder());
-        Assert.notNull(car.getPrice());
-        Assert.isTrue(car.getPrice()!=0);
+        Assert.notNull(cart);
+        Assert.isNull(cart.getId());
+        Car car=new Car();
+
+        car.setIdBrand(brandService.findByName(cart.getBrandName()).getId());
+
+
+        car.setIdModel(modelService.findByName(cart.getModelName()).getId());
+
+        car.setIdConfig(configService.findByType(cart.getConfigName()).getId());
+        car.setDateBuilder(cart.getDateBuilder());
+        car.setPrice(car.getPrice());
         carMapper.insert(car);
         List<Car>list=carMapper.findAll();
         return list.get(list.size()-1).getId();
     }
 
     @Override
-    public Integer update(Car car) {
+    public Integer update(CarDTO cart) {
         LOGGER.debug("CarServiceImpl: update");
-        Assert.notNull(car);
-        Assert.notNull(car.getId());
-        Assert.notNull(carMapper.findById(car.getId()));
-        Assert.notNull(brandService.findById(car.getIdBrand()));
-        Assert.notNull(modelService.findById(car.getIdModel()));
-        Assert.notNull(configService.findById(car.getIdConfig()));
-        Assert.notNull(car.getDateBuilder());
-        Assert.notNull(car.getPrice());
-        Assert.isTrue(car.getPrice()!=0);
+        Assert.notNull(cart);
+
+        Car car=carMapper.findById(cart.getId());
+
+        car.setIdBrand(brandService.findByName(cart.getBrandName()).getId());
+        car.setIdModel(modelService.findByName(cart.getModelName()).getId());
+        car.setIdConfig(configService.findByType(cart.getConfigName()).getId());
+        car.setDateBuilder(cart.getDateBuilder());
+
+        car.setPrice(cart.getPrice());
+
         carMapper.update(car);
         return car.getId();
     }
