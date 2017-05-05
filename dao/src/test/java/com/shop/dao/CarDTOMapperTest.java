@@ -48,7 +48,7 @@ public class CarDTOMapperTest {
 
     @Test
     public void findByBrandAndModel() throws Exception{
-        List<CarDTO>list=carDTOMapper.findByBrandAndModel("Toyota","Sedan");
+        List<CarDTO>list=carDTOMapper.findByBrandAndModel("Toyta","Sedan");
         Assert.assertTrue(list.size()>0);
     }
 
