@@ -14,4 +14,5 @@ public interface CarDTOMapper {
     List<CarDTO> findByBrand(String brand);
     List<CarDTO> findByModel(String model);
     List<CarDTO> findByBrandAndModel(@Param("brandName") String brand,@Param("modelName") String model);
+    CarDTO findById(Integer id);
 }

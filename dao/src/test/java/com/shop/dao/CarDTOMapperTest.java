@@ -52,5 +52,12 @@ public class CarDTOMapperTest {
         Assert.assertTrue(list.size()>0);
     }
 
+    @Test
+    public void findById()throws Exception{
+        CarDTO carDTO=carDTOMapper.findById(1);
+        Assert.assertNotNull(carDTO);
+    }
+
+
 
 }

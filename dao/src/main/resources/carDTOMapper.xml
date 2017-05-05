@@ -73,5 +73,20 @@
         WHERE brand.name_brand=#{brandName} OR model.name_model=#{modelName}
     </select>
 
+    <select id="findById"  resultMap="carDTOResultMap">
+        SELECT
+        car.id ,
+        brand.name_brand ,
+        model.name_model ,
+        config.type_configuration ,
+        config.description_configuration ,
+        car.date_builder ,  car.price
+        FROM car_shop.car car
+        LEFT JOIN car_shop.brand brand ON car.id_brand=brand.id
+        LEFT JOIN car_shop.model model ON car.id_model=model.id
+        LEFT JOIN car_shop.configuration config ON car.id_configuration=config.id
+        WHERE car.id=#{id}
+    </select>
+
 
 </mapper>
