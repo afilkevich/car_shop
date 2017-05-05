@@ -19,10 +19,10 @@ USE `car_shop` ;
 DROP TABLE IF EXISTS `car_shop`.`configuration` ;
 
 CREATE TABLE IF NOT EXISTS `car_shop`.`configuration` (
-  `id_configuration` INT NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(45) NOT NULL,
-  `description` VARCHAR(75) NOT NULL,
-  PRIMARY KEY (`id_configuration`))
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `type_configuration` VARCHAR(45) NOT NULL,
+  `description_configuration` VARCHAR(75) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -32,9 +32,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `car_shop`.`brand` ;
 
 CREATE TABLE IF NOT EXISTS `car_shop`.`brand` (
-  `id_brand` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name_brand` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_brand`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -44,9 +44,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `car_shop`.`model` ;
 
 CREATE TABLE IF NOT EXISTS `car_shop`.`model` (
-  `id_model` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name_model` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_model`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -68,17 +68,17 @@ CREATE TABLE IF NOT EXISTS `car_shop`.`car` (
   INDEX `id_model_idx` (`id_model` ASC),
   CONSTRAINT `id_configuration`
     FOREIGN KEY (`id_configuration`)
-    REFERENCES `car_shop`.`configuration` (`id_configuration`)
+    REFERENCES `car_shop`.`configuration` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_brand`
     FOREIGN KEY (`id_brand`)
-    REFERENCES `car_shop`.`brand` (`id_brand`)
+    REFERENCES `car_shop`.`brand` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `id_model`
     FOREIGN KEY (`id_model`)
-    REFERENCES `car_shop`.`model` (`id_model`)
+    REFERENCES `car_shop`.`model` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -90,9 +90,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `car_shop`.`discount` ;
 
 CREATE TABLE IF NOT EXISTS `car_shop`.`discount` (
-  `id_discount` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `value_discount` INT NOT NULL,
-  PRIMARY KEY (`id_discount`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `car_shop`.`shopping_cart` (
   `id_car` INT NOT NULL,
   `id_discount` INT NOT NULL,
   `amount_car` INT NOT NULL,
-  `price` INT NOT NULL,
+  `price_cart` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `id_car_idx` (`id_car` ASC),
   INDEX `id_count_idx` (`id_discount` ASC),
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `car_shop`.`shopping_cart` (
     ON UPDATE CASCADE,
   CONSTRAINT `id_count`
     FOREIGN KEY (`id_discount`)
-    REFERENCES `car_shop`.`discount` (`id_discount`)
+    REFERENCES `car_shop`.`discount` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

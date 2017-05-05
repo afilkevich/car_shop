@@ -5,10 +5,10 @@
 
     <resultMap id="shoppingCartResultMap" type="ShoppingCart">
         <id property="id" column="id" />
-        <id property="idCar" column="id_car" />
-        <id property="idDiscount" column="id_discount" />
-        <id property="amountCar" column="amount_car" />
-         <id property="price" column="price" />
+        <result property="idCar" column="id_car" />
+        <result property="idDiscount" column="id_discount" />
+        <result property="amountCar" column="amount_car" />
+         <result property="price" column="price_cart" />
 
     </resultMap>
 
@@ -22,7 +22,7 @@
     </select>
 
     <select id="insert" parameterType="ShoppingCart">
-        INSERT INTO car_shop.shopping_cart ( id_car, id_discount, amount_car, price)
+        INSERT INTO car_shop.shopping_cart ( id_car, id_discount, amount_car, price_cart)
         VALUES (#{idCar}, #{idDiscount}, #{amountCar}, #{price})
     </select>
 
@@ -31,7 +31,7 @@
         id_car = #{idCar},
         id_discount=#{idDiscount},
         amount_car=#{amountCar},
-        price=#{price}
+        price_cart=#{price}
         WHERE id= #{id}
     </select>
 

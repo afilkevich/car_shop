@@ -5,11 +5,11 @@
 
     <resultMap id="carResultMap" type="Car">
         <id property="id" column="id" />
-        <id property="idBrand" column="id_brand" />
-        <id property="idModel" column="id_model" />
-        <id property="idConfig" column="id_configuration" />
-        <id property="dateBuilder" column="date_builder" />
-        <id property="price" column="price" />
+        <result property="idBrand" column="id_brand" />
+        <result property="idModel" column="id_model" />
+        <result property="idConfig" column="id_configuration" />
+        <result property="dateBuilder" column="date_builder" />
+        <result property="price" column="price" />
 
     </resultMap>
 

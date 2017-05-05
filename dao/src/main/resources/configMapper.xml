@@ -4,9 +4,9 @@
 <mapper namespace="com.shop.dao.ConfigMapper">
 
     <resultMap id="configResultMap" type="Config">
-        <id property="id" column="id_configuration" />
-        <id property="type" column="type" />
-        <id property="description" column="description" />
+        <id property="id" column="id" />
+        <result property="type" column="type_configuration" />
+        <result property="description" column="description_configuration" />
 
     </resultMap>
 
@@ -16,24 +16,24 @@
     </select>
 
     <select id="findByType" parameterType="String" resultMap="configResultMap">
-        SELECT * FROM car_shop.configuration WHERE type=#{type}
+        SELECT * FROM car_shop.configuration WHERE type_configuration=#{type}
     </select>
 
     <select id="findById" parameterType="int" resultMap="configResultMap">
-        SELECT * FROM car_shop.configuration WHERE id_configuration=#{id}
+        SELECT * FROM car_shop.configuration WHERE id=#{id}
     </select>
 
 
     <select id="insert" parameterType="Config">
-        INSERT INTO car_shop.configuration (type, description)
+        INSERT INTO car_shop.configuration (type_configuration, description_configuration)
         VALUES (#{type}, #{description})
     </select>
 
     <select id="update" parameterType="Config">
         UPDATE car_shop.configuration SET
-        type = #{type},
-        description=#{description}
-        WHERE id_configuration= #{id}
+        type_configuration = #{type},
+        description_configuration=#{description}
+        WHERE id= #{id}
     </select>
 
 </mapper>

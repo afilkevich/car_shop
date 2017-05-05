@@ -3,7 +3,7 @@ VALUES
 ('Toyota'),
 ('Audi');
 
-INSERT INTO `car_shop`.`configuration`(`type`,`description`)
+INSERT INTO `car_shop`.`configuration`(`type_configuration`,`description_configuration`)
 VALUES
 ('Minimal','ventilation'),
 ('Standart','air-condition'),
@@ -24,7 +24,7 @@ VALUES
 (1),
 (15);
 
-INSERT INTO `car_shop`.`shopping_cart`(`id_car`,`id_discount`,`amount_car`,`price`)
+INSERT INTO `car_shop`.`shopping_cart`(`id_car`,`id_discount`,`amount_car`,`price_cart`)
 VALUES
 (1,1,2,9800);
 

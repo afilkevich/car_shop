@@ -4,8 +4,8 @@
 <mapper namespace="com.shop.dao.DiscountMapper">
 
     <resultMap id="discountResultMap" type="Discount">
-        <id property="id" column="id_discount" />
-        <id property="valueDiscount" column="value_discount" />
+        <id property="id" column="id" />
+        <result property="valueDiscount" column="value_discount" />
 
 
     </resultMap>
@@ -20,7 +20,7 @@
     </select>
 
     <select id="findById" parameterType="int" resultMap="discountResultMap">
-        SELECT * FROM car_shop.discount WHERE id_discount=#{id}
+        SELECT * FROM car_shop.discount WHERE id=#{id}
     </select>
 
 
@@ -32,7 +32,7 @@
     <select id="update" parameterType="Discount">
         UPDATE car_shop.discount SET
         value_discount = #{valueDiscount}
-        WHERE id_discount= #{id}
+        WHERE id= #{id}
     </select>
 
 </mapper>

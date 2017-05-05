@@ -4,8 +4,8 @@
 <mapper namespace="com.shop.dao.BrandMapper">
 
     <resultMap id="brandResultMap" type="Brand">
-        <id property="id" column="id_brand" />
-        <id property="name" column="name_brand" />
+        <id property="id" column="id" />
+        <result property="name" column="name_brand" />
 
     </resultMap>
 
@@ -19,7 +19,7 @@
     </select>
 
     <select id="findById" parameterType="int" resultMap="brandResultMap">
-        SELECT * FROM car_shop.brand WHERE id_brand=#{id}
+        SELECT * FROM car_shop.brand WHERE id=#{id}
     </select>
 
 
@@ -31,7 +31,7 @@
     <select id="update" parameterType="Brand">
         UPDATE car_shop.brand SET
         name_brand = #{name}
-        WHERE id_brand= #{id}
+        WHERE id= #{id}
     </select>
 
 </mapper>
