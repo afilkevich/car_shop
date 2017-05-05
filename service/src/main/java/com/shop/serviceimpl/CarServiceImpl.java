@@ -75,7 +75,6 @@ public class CarServiceImpl implements CarService {
     public List<CarDTO> findByModel(String model) {
         LOGGER.debug("CarServiceImpl:findIdModel");
         Assert.notNull(model);
-
         return carDTOMapper.findByModel(model);
     }
 
@@ -92,7 +91,7 @@ public class CarServiceImpl implements CarService {
         Assert.notNull(id);
         Assert.isTrue(id>0);
         CarDTO car=carDTOMapper.findById(id);
-        Assert.notNull(car);
+
         return car;
     }
 

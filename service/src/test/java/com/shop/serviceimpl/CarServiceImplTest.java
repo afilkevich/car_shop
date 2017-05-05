@@ -30,7 +30,7 @@ public class CarServiceImplTest {
     private static final String BRAND="Toyota";
     private static final String WRONG_BRAND="MErs";
     private static final String MODEL="Sedan";
-    private static final Integer WRONG_ID_MODEL=8;
+    private static final String WRONG_MODEL="gd";
     private static final Integer ID=2;
     private static final Integer WRONG_ID=9;
     private static final Integer PRICE=4590;
@@ -86,32 +86,54 @@ public class CarServiceImplTest {
         List<CarDTO> list=carService.findByModel(null);
     }
 
-    /*@Test(expected = IllegalArgumentException.class)
-    public void findByWrongIdModel() throws Exception{
+    @Test
+    public void findByWrongModel() throws Exception{
         LOGGER.debug("CarServiceImpl test:findByWrongIdModel");
-        List<Car>list=carService.findByIdModel(WRONG_ID_MODEL);
+        List<CarDTO>list=carService.findByModel(WRONG_MODEL);
+        Assert.assertTrue(list.size()==0);
     }
 
     @Test
     public void findById() throws Exception {
         LOGGER.debug("CarServiceImpl test:findById");
-        Car car=carService.findById(ID);
+        CarDTO car=carService.findById(ID);
         Assert.assertEquals(ID,car.getId());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void findNullId() throws Exception{
         LOGGER.debug("CarServiceIml test:findNullId");
-        Car car=carService.findById(null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void findWrongId() throws Exception{
-        LOGGER.debug("CarServiceImpl test: findWrongId");
-        Car car=carService.findById(WRONG_ID);
+        CarDTO car=carService.findById(null);
     }
 
     @Test
+    public void findWrongId() throws Exception{
+        LOGGER.debug("CarServiceImpl test: findWrongId");
+        CarDTO car=carService.findById(WRONG_ID);
+        Assert.assertNull(car);
+    }
+
+    @Test
+    public void findByBrandAndModel() throws Exception{
+        LOGGER.debug("CarServiceImpl test: findByBrandAndModel");
+        List<CarDTO>list=carService.findByBrandAndModel(BRAND,MODEL);
+        Assert.assertTrue(list.size()>0);
+    }
+    @Test
+    public void findByNullBtrandAndModel() throws Exception{
+        LOGGER.debug("CarServiceImpl test: findByNullBrandAndModel");
+        List<CarDTO>list=carService.findByBrandAndModel(null,MODEL);
+        Assert.assertTrue(list.size()>0);
+    }
+
+    @Test
+    public void findByBrandAndNullModel() throws Exception{
+        LOGGER.debug("CarServiceImpl test: findByBrandAndNullModel");
+        List<CarDTO>list=carService.findByBrandAndModel(BRAND,null);
+        Assert.assertTrue(list.size()>0);
+    }
+
+    /*@Test
     public void insert() throws Exception {
       LOGGER.debug("CarServiceImpl test:insert");
       carService.insert(CAR);
