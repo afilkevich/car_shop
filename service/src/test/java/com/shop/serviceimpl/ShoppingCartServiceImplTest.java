@@ -32,7 +32,7 @@ public class ShoppingCartServiceImplTest {
     private static final ShoppingCartDTO UP_CART_DTO=new ShoppingCartDTO(1,2,1,8,8900);
     private static final Integer DISCOUNT_ID=2;
     private static final Integer PRICE=29750;
-    
+
     private static final Integer ID=1;
     private static final Integer Wrong_ID=8;
 
