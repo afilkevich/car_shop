@@ -118,8 +118,8 @@ CREATE TABLE IF NOT EXISTS `car_shop`.`shopping_cart` (
   CONSTRAINT `id_count`
     FOREIGN KEY (`id_discount`)
     REFERENCES `car_shop`.`discount` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

@@ -1,7 +1,9 @@
 package com.shop.serviceimpl;
 
+import com.shop.dao.ShoppingCartDTOMapper;
 import com.shop.dao.ShoppingCartMapper;
 import com.shop.model.ShoppingCart;
+import com.shop.model.ShoppingCartDTO;
 import com.shop.service.CarService;
 import com.shop.service.DiscountService;
 import com.shop.service.ShoppingCartService;
@@ -27,10 +29,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     ShoppingCartMapper shoppingCartMapper;
 
     @Autowired
+    ShoppingCartDTOMapper shoppingCartDTOMapper;
+
+    @Autowired
     CarService carService;
 
     @Autowired
     DiscountService discountService;
+
+    public void setShoppingCartDTOMapper(ShoppingCartDTOMapper shoppingCartDTOMapper) {
+        this.shoppingCartDTOMapper = shoppingCartDTOMapper;
+    }
 
     public void setShoppingCartMapper(ShoppingCartMapper shoppingCartMapper) {
         this.shoppingCartMapper = shoppingCartMapper;
@@ -45,47 +54,40 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public List<ShoppingCart> findAll() {
+    public List<ShoppingCartDTO> findAll() {
         LOGGER.debug("ShoppingCartServiceImpl:findAll");
-        return shoppingCartMapper.findAll();
+        return shoppingCartDTOMapper.findAll();
     }
 
     @Override
-    public ShoppingCart findById(Integer id) {
+    public ShoppingCartDTO findById(Integer id) {
         LOGGER.debug("ShoppingCartServiceImpl:findById");
         Assert.notNull(id);
         Assert.isTrue(id!=0);
-        ShoppingCart shoppingCart=shoppingCartMapper.findById(id);
-        Assert.notNull(shoppingCart);
+        ShoppingCartDTO shoppingCart=shoppingCartDTOMapper.findById(id);
         return shoppingCart;
     }
 
     @Override
-    public Integer insert(ShoppingCart cart) {
+    public Integer insert(ShoppingCartDTO cartDTO) {
         LOGGER.debug("ShoppingCartServiceImpl:insert");
-        Assert.notNull(cart);
-        Assert.isNull(cart.getId());
-        Assert.notNull(cart.getIdCar());
-        Assert.notNull(carService.findById(cart.getIdCar()));
-        Assert.isNull(cart.getIdDiscount());
-        Assert.notNull(cart.getAmountCar());
-        Assert.isNull(cart.getPrice());
-        calculatePrice(cart);
-        shoppingCartMapper.insert(cart);
-        List<ShoppingCart>list=shoppingCartMapper.findAll();
+        Assert.notNull(cartDTO);
+        Assert.isNull(cartDTO.getId());
+        ShoppingCart cart= convertToAddShoppingCart(cartDTO);
+         calculatePrice(cart);
+         shoppingCartMapper.insert(cart);
+        List<ShoppingCartDTO>list=shoppingCartDTOMapper.findAll();
         return list.get(list.size()-1).getId();
     }
 
     @Override
-    public Integer update(ShoppingCart cart) {
+    public Integer update(ShoppingCartDTO cartDTO) {
         LOGGER.debug("ShoppingCartServiceImpl:update");
-        Assert.notNull(cart);
-        Assert.notNull(cart.getId());
-        Assert.notNull(cart.getIdDiscount());
-        Assert.notNull(cart.getPrice());
-        Assert.notNull(cart.getAmountCar());
-        Assert.notNull(cart.getIdCar());
+        Assert.notNull(cartDTO);
+        Assert.notNull(cartDTO.getId());
+        ShoppingCart cart=convertToUpShoppingCart(cartDTO);
         calculatePrice(cart);
+        System.out.println(cart);
         shoppingCartMapper.update(cart);
         return cart.getId();
     }
@@ -122,5 +124,31 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             cart.setPrice(priceAllCar-discount);
 
         }
+    }
+
+    @Override
+    public ShoppingCart convertToAddShoppingCart(ShoppingCartDTO cartDTO) {
+        ShoppingCart cart=new ShoppingCart();
+        cart.setId(cartDTO.getId());
+        Assert.notNull(cartDTO.getIdCar());
+        cart.setIdCar(cartDTO.getIdCar());
+        Assert.notNull(cartDTO.getAmountCar());
+        cart.setAmountCar(cartDTO.getAmountCar());
+        return cart;
+    }
+
+    @Override
+    public ShoppingCart convertToUpShoppingCart(ShoppingCartDTO cartDTO) {
+        ShoppingCart cart=new ShoppingCart();
+        cart.setId(cartDTO.getId());
+        Assert.notNull(cartDTO.getIdCar());
+        cart.setIdCar(cartDTO.getIdCar());
+        Assert.notNull(cartDTO.getAmountCar());
+        cart.setAmountCar(cartDTO.getAmountCar());
+        Assert.notNull(discountService.findByValue(cartDTO.getValueDiscount()));
+        cart.setIdDiscount(discountService.findByValue(cartDTO.getValueDiscount()).getId());
+        Assert.notNull(cartDTO.getPrice());
+        cart.setPrice(cartDTO.getPrice());
+        return cart;
     }
 }

@@ -9,10 +9,12 @@ import java.util.List;
  * Created by master on 1.5.17.
  */
 public interface ShoppingCartService {
-    List<ShoppingCart> findAll();
-    ShoppingCart findById(Integer id);
-    Integer insert(ShoppingCart cartDTO);
-    Integer update(ShoppingCart cartDTO);
+    List<ShoppingCartDTO> findAll();
+    ShoppingCartDTO findById(Integer id);
+    Integer insert(ShoppingCartDTO cartDTO);
+    Integer update(ShoppingCartDTO cartDTO);
     Integer delete(Integer id);
-    void calculatePrice(ShoppingCart cartDTO);
+    void calculatePrice(ShoppingCart cart);
+    ShoppingCart convertToAddShoppingCart(ShoppingCartDTO cartDTO);
+    ShoppingCart convertToUpShoppingCart(ShoppingCartDTO cartDTO);
 }

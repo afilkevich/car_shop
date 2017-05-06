@@ -77,6 +77,7 @@
         <property name="brandService" ref="brandService"/>
         <property name="modelService" ref="modelService"/>
         <property name="configService" ref="configService"/>
+
     </bean>
 
     <bean id="shoppingCartMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
@@ -84,10 +85,18 @@
         <property name="sqlSessionFactory" ref="sessionFactory" />
     </bean>
 
+    <bean id="shoppingCartDTOMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.shop.dao.ShoppingCartDTOMapper" />
+        <property name="sqlSessionFactory" ref="sessionFactory" />
+    </bean>
+
+
+
     <bean id="shoppingCartService" class="com.shop.serviceimpl.ShoppingCartServiceImpl">
         <property name="shoppingCartMapper" ref="shoppingCartMapper"/>
         <property name="carService" ref="carService"/>
         <property name="discountService" ref="discountService"/>
+        <property name="shoppingCartDTOMapper" ref="shoppingCartDTOMapper"/>
     </bean>
 
 

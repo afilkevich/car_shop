@@ -20,6 +20,11 @@ public class ShoppingCartDTO {
         this.price = price;
     }
 
+    public ShoppingCartDTO(Integer idCar, Integer amountCar) {
+        this.idCar = idCar;
+        this.amountCar = amountCar;
+    }
+
     public ShoppingCartDTO() {
     }
 

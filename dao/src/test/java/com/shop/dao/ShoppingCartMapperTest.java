@@ -60,8 +60,14 @@ public class ShoppingCartMapperTest {
         LOGGER.debug("ShoppingCartMApperTest:update()");
         ShoppingCart cart=shoppingCartMapper.findById(ID);
         cart.setAmountCar(10);
+        cart.setIdDiscount(2);
+        cart.setPrice(3400);
+
         shoppingCartMapper.update(cart);
-        Assert.assertTrue(shoppingCartMapper.findById(ID).getAmountCar()==10);
+
+
+        Assert.assertTrue(shoppingCartMapper.findById(ID).getIdDiscount()==2);
+        Assert.assertTrue(shoppingCartMapper.findById(ID).getPrice()==3400);
 
     }
 
