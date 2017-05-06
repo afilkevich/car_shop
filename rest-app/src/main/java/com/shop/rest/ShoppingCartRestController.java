@@ -1,6 +1,7 @@
 package com.shop.rest;
 
 import com.shop.model.ShoppingCart;
+import com.shop.model.ShoppingCartDTO;
 import com.shop.service.ShoppingCartService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +32,7 @@ public class ShoppingCartRestController {
     // curl -v localhost:8088/carts
     @ResponseBody
     @RequestMapping(value="/carts",method = RequestMethod.GET)
-    public List<ShoppingCart> findAllShoppingCart(){
+    public List<ShoppingCartDTO> findAllShoppingCart(){
         LOGGER.debug("ShoppingCartRestController:findAllCart");
         return cartService.findAll();
     }
@@ -39,7 +40,7 @@ public class ShoppingCartRestController {
     // curl -v localhost:8088/cart/1
     @ResponseBody
     @RequestMapping(value = "cart/{id}",method = RequestMethod.GET)
-    public ShoppingCart findShoppingCarById(@PathVariable(value = "id")Integer id){
+    public ShoppingCartDTO findShoppingCarById(@PathVariable(value = "id")Integer id){
         LOGGER.debug("ShoppingCartRestController: findShoppingCartById");
         return cartService.findById(id);
     }
@@ -48,7 +49,7 @@ public class ShoppingCartRestController {
     @ResponseBody
     @ResponseStatus(value = HttpStatus.CREATED)
     @RequestMapping(value="cart",method = RequestMethod.POST)
-    public Integer addShoppingCart(@RequestBody ShoppingCart cart){
+    public Integer addShoppingCart(@RequestBody ShoppingCartDTO cart){
         LOGGER.debug("ShoppingCartRestController:addCart",cart);
         return cartService.insert(cart);
     }
@@ -57,7 +58,7 @@ public class ShoppingCartRestController {
     @ResponseBody
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     @RequestMapping(value="cart",method = RequestMethod.PUT)
-    public Integer updateShoppingCart(@RequestBody ShoppingCart cart) {
+    public Integer updateShoppingCart(@RequestBody ShoppingCartDTO cart) {
         LOGGER.debug("ShoppingCartRestController:updateCart", cart);
         return cartService.update(cart);
     }
