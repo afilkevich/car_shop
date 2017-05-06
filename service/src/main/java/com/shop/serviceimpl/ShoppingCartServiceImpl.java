@@ -63,7 +63,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public ShoppingCartDTO findById(Integer id) {
         LOGGER.debug("ShoppingCartServiceImpl:findById");
         Assert.notNull(id);
-        Assert.isTrue(id!=0);
+
         ShoppingCartDTO shoppingCart=shoppingCartDTOMapper.findById(id);
         return shoppingCart;
     }
@@ -87,8 +87,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         Assert.notNull(cartDTO.getId());
         ShoppingCart cart=convertToUpShoppingCart(cartDTO);
         calculatePrice(cart);
-        System.out.println(cart);
         shoppingCartMapper.update(cart);
+        //System.out.println("update"+shoppingCartMapper.findById(cart.getId()));
         return cart.getId();
     }
 
@@ -107,6 +107,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         Assert.notNull(cart);
         Assert.notNull(cart.getIdCar());
         Assert.notNull(cart.getAmountCar());
+        cart.setPrice(null);
+        cart.setIdDiscount(null);
         if (cart.getAmountCar()>3){
             cart.setIdDiscount(2);
             int valueDiscount=discountService.findById(cart.getIdDiscount()).getValueDiscount();
@@ -114,6 +116,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             int priceAllCar=priceCar*cart.getAmountCar();
             int discount=(priceAllCar/100)*valueDiscount;
             cart.setPrice(priceAllCar-discount);
+
         }
         else {
             cart.setIdDiscount(1);
