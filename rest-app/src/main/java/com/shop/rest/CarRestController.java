@@ -52,6 +52,15 @@ public class CarRestController {
         return carService.findByModel(name);
     }
 
+    // curl -v localhost:8088/car/brand/Toyota/model/Sedan
+    @ResponseBody
+    @RequestMapping(value = "car/brand/{brand}/model/{model}",method = RequestMethod.GET)
+    public List<CarDTO> findCarByBrandAndModel(@PathVariable(value = "brand" )String brand ,
+                                               @PathVariable(value = "model")String model){
+        LOGGER.debug("CarRestController: findCarByModel");
+        return carService.findByBrandAndModel(brand,model);
+    }
+
     // curl -v localhost:8088/car/2
     @ResponseBody
     @RequestMapping(value = "car/{id}",method = RequestMethod.GET)

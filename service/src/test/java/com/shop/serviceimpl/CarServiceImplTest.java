@@ -115,21 +115,12 @@ public class CarServiceImplTest {
     public void findByBrandAndModel() throws Exception{
         LOGGER.debug("CarServiceImpl test: findByBrandAndModel");
         List<CarDTO>list=carService.findByBrandAndModel(BRAND,MODEL);
-        Assert.assertTrue(list.size()>0);
-    }
-    @Test
-    public void findByNullBtrandAndModel() throws Exception{
-        LOGGER.debug("CarServiceImpl test: findByNullBrandAndModel");
-        List<CarDTO>list=carService.findByBrandAndModel(null,MODEL);
+        for(CarDTO carDTO:list){
+            System.out.println(carDTO);
+        }
         Assert.assertTrue(list.size()>0);
     }
 
-    @Test
-    public void findByBrandAndNullModel() throws Exception{
-        LOGGER.debug("CarServiceImpl test: findByBrandAndNullModel");
-        List<CarDTO>list=carService.findByBrandAndModel(BRAND,null);
-        Assert.assertTrue(list.size()>0);
-    }
 
     @Test
     public void convertToCar() throws Exception{
