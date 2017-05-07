@@ -73,10 +73,10 @@ public class ShoppingCartRestControllerMockTest {
 
     }
 
-/*    @Test
+    @Test
     public void findShoppingCarById() throws Exception {
         LOGGER.debug("CarRestControllerMockTest:findShoppingCartById");
-        expect(cartService.findById(CART.getId())).andReturn(CART);
+        expect(cartService.findById(CART_DTO.getId())).andReturn(CART_DTO);
         replay(cartService);
 
         mockMvc.perform(
@@ -89,39 +89,39 @@ public class ShoppingCartRestControllerMockTest {
     @Test
     public void addShoppingCart() throws Exception {
         LOGGER.debug("ShoppingCartRestControllerMockTest:addCart");
-        expect(cartService.insert(anyObject(ShoppingCart.class))).andReturn(1);
+        expect(cartService.insert(anyObject(ShoppingCartDTO.class))).andReturn(1);
         replay(cartService);
 
-        String cart=new ObjectMapper().writeValueAsString(new ShoppingCart());
+        String cartDTO=new ObjectMapper().writeValueAsString(new ShoppingCartDTO());
 
         mockMvc.perform(
                 post("/cart")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(cart))
+                        .content(cartDTO))
                 .andDo(print()).andExpect(status().isCreated());
     }
 
-    @Test
+   @Test
     public void updateShoppingCart() throws Exception {
         LOGGER.debug("ShoppingCartRestControllerMockTest:updateCart");
-        expect(cartService.update(anyObject(ShoppingCart.class))).andReturn(1);
+        expect(cartService.update(anyObject(ShoppingCartDTO.class))).andReturn(1);
         replay(cartService);
 
-        String cart=new ObjectMapper().writeValueAsString(new ShoppingCart());
+        String cartDTO=new ObjectMapper().writeValueAsString(new ShoppingCartDTO());
 
         mockMvc.perform(
                 put("/cart")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(cart))
+                        .content(cartDTO))
                 .andDo(print()).andExpect(status().isAccepted());
     }
 
     @Test
     public void deleteShoppingCart() throws Exception {
         LOGGER.debug("ShoppingCartRestControllerMockTest:deleteCart");
-        expect(cartService.delete(CART.getId())).andReturn(1);
+        expect(cartService.delete(CART_DTO.getId())).andReturn(1);
         replay(cartService);
 
         mockMvc.perform(
@@ -130,5 +130,5 @@ public class ShoppingCartRestControllerMockTest {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
-*/
+
 }
