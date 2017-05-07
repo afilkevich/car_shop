@@ -16,7 +16,7 @@ import java.util.List;
  */
 @CrossOrigin
 @RestController
-@RequestMapping
+
 public class CarRestController {
     private static final Logger LOGGER= LogManager.getLogger();
 

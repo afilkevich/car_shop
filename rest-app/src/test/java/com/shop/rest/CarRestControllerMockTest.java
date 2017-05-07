@@ -74,14 +74,14 @@ public class CarRestControllerMockTest {
                 .andExpect(status().isOk());
     }
 
-   /* @Test
+   @Test
     public void findCarByBrand() throws Exception {
         LOGGER.debug("CarRestControllerMockTest:findCarByBrand");
         expect(carService.findByBrand(CAR_DTO.getBrandName())).andReturn(Arrays.<CarDTO>asList(CAR_DTO));
         replay(carService);
 
         mockMvc.perform(
-                get("/car/brand/2")
+                get("/car/brand/Toyota")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -90,11 +90,11 @@ public class CarRestControllerMockTest {
     @Test
     public void findCarByModel() throws Exception {
         LOGGER.debug("CarRestControllerMockTest:findCarByModel");
-        expect(carService.findByModel(CAR_DTO.getModelName())).andReturn(Arrays.<Car>asList(CAR));
+        expect(carService.findByModel(CAR_DTO.getModelName())).andReturn(Arrays.<CarDTO>asList(CAR_DTO));
         replay(carService);
 
         mockMvc.perform(
-                get("/car/model/2")
+                get("/car/model/Sedan")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -103,7 +103,7 @@ public class CarRestControllerMockTest {
     @Test
     public void findCarById() throws Exception {
         LOGGER.debug("CarRestControllerMockTest:findCarById");
-        expect(carService.findById(CAR.getId())).andReturn(CAR);
+        expect(carService.findById(CAR_DTO.getId())).andReturn(CAR_DTO);
         replay(carService);
 
         mockMvc.perform(
@@ -114,41 +114,56 @@ public class CarRestControllerMockTest {
     }
 
     @Test
-    public void addCar() throws Exception {
-        LOGGER.debug("CarRestControllerMockTest:addCar");
-        expect(carService.insert(anyObject(Car.class))).andReturn(3);
+    public void findCarByBrandAndModel() throws Exception {
+        LOGGER.debug("CarRestControllerMockTest:findCarByBrandAndModel");
+        expect(carService.findByBrandAndModel(CAR_DTO.getBrandName(),CAR_DTO.getModelName())).andReturn(Arrays.<CarDTO>asList(CAR_DTO));
         replay(carService);
 
-        String car=new ObjectMapper().writeValueAsString(new Car());
+        mockMvc.perform(
+                get("/car/brand/Toyota/model/Sedan")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+
+
+    @Test
+    public void addCar() throws Exception {
+        LOGGER.debug("CarRestControllerMockTest:addCar");
+        expect(carService.insert(anyObject(CarDTO.class))).andReturn(3);
+        replay(carService);
+
+        String carDTO=new ObjectMapper().writeValueAsString(new CarDTO());
 
         mockMvc.perform(
                 post("/car")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(car))
+                        .content(carDTO))
                 .andDo(print()).andExpect(status().isCreated());
     }
 
     @Test
     public void updateCar() throws Exception {
         LOGGER.debug("CarRestControllerMockTest:updateCar");
-        expect(carService.update(anyObject(Car.class))).andReturn(3);
+        expect(carService.update(anyObject(CarDTO.class))).andReturn(3);
         replay(carService);
 
-        String car=new ObjectMapper().writeValueAsString(new Car());
+        String carDTO=new ObjectMapper().writeValueAsString(new CarDTO());
 
         mockMvc.perform(
                 put("/car")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(car))
+                        .content(carDTO))
                 .andDo(print()).andExpect(status().isAccepted());
     }
 
     @Test
     public void deleteCar() throws Exception {
         LOGGER.debug("CarRestControllerMockTest:deleteCar");
-        expect(carService.delete(CAR.getId())).andReturn(3);
+        expect(carService.delete(CAR_DTO.getId())).andReturn(3);
         replay(carService);
 
         mockMvc.perform(
@@ -157,5 +172,5 @@ public class CarRestControllerMockTest {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
-*/
+
 }
