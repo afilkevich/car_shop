@@ -37,6 +37,7 @@ public class ShoppingCartRestController {
         return cartService.findAll();
     }
 
+
     // curl -v localhost:8088/cart/1
     @ResponseBody
     @RequestMapping(value = "cart/{id}",method = RequestMethod.GET)
@@ -45,7 +46,7 @@ public class ShoppingCartRestController {
         return cartService.findById(id);
     }
 
-    // curl -H "Content-Type: application/json" -X POST -d '{"idCar":"2", "amountCar":"3"}' -v localhost:8088/cart
+    // curl -H "Content-Type: application/json" -X POST -d '{"idCar":"2", "amountCar":"10"}' -v localhost:8088/cart
     @ResponseBody
     @ResponseStatus(value = HttpStatus.CREATED)
     @RequestMapping(value="cart",method = RequestMethod.POST)
