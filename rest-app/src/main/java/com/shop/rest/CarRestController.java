@@ -57,7 +57,7 @@ public class CarRestController {
     @RequestMapping(value = "car/brand/{brand}/model/{model}",method = RequestMethod.GET)
     public List<CarDTO> findCarByBrandAndModel(@PathVariable(value = "brand" )String brand ,
                                                @PathVariable(value = "model")String model){
-        LOGGER.debug("CarRestController: findCarByModel");
+        LOGGER.debug("CarRestController: findCarByBrandANdModel");
         return carService.findByBrandAndModel(brand,model);
     }
 
@@ -69,7 +69,7 @@ public class CarRestController {
         return carService.findById(id);
     }
 
-    // curl -H "Content-Type: application/json" -X POST -d '{"idBrand":"2", "idModel":"1", "idConfig":"3", "dateBuilder":"2008-11-10", "price":"16000"}' -v localhost:8088/car
+    // curl -H "Content-Type: application/json" -X POST -d '{"brandName":"Audi", "modelName":"Sedan", "configName":"Lux", "configDescription":"climat-control","dateBuilder":"2008-11-10", "price":"96000"}' -v localhost:8088/car
     @ResponseBody
     @ResponseStatus(value = HttpStatus.CREATED)
     @RequestMapping(value="car",method = RequestMethod.POST)
@@ -78,7 +78,7 @@ public class CarRestController {
         return carService.insert(carDTO);
     }
 
-    // curl -H "Content-Type: application/json" -X PUT -d '{"id":"2", "idBrand":"1", "idModel":"1", "idConfig":"1", "dateBuilder":"2008-11-10", "price":"16000"}' -v localhost:8088/car
+    // curl -H "Content-Type: application/json" -X PUT -d '{"id":"2", "brandName":"Audi", "modelName":"Sedan", "configName":"Lux", "configDescription":"climat-control", "dateBuilder":"2008-11-10", "price":"16000"}' -v localhost:8088/car
     @ResponseBody
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     @RequestMapping(value="car",method = RequestMethod.PUT)
