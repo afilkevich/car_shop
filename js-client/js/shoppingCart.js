@@ -5,6 +5,8 @@ $.dto=null;
 
 getAllCart();
 
+
+
 $(document).on("click", "a", function() {
     var action = $(this).text();
     var selectedId = $(this).data("id");
@@ -12,6 +14,23 @@ $(document).on("click", "a", function() {
       deleteCart(selectedId);
     }
 });
+
+ $('#btnShoppingCartAdd').click(function(){
+    if(($('#newIdCar').val()!='')&&($('#newAmountCar').val()!=''))
+    addCart();
+    return false;
+});
+
+$('#btnCartSave').click(function(){
+  if(($('#cartId').val()!='')&&($('#idCar').val()!='') &&($('#amountCar').val()!='')){
+  updateCart();
+  return false;
+  }
+  else{
+  alert("please, write data in the form");
+  }
+  });
+
 
 function getAllCart(){
    $.ajax({
@@ -44,12 +63,12 @@ function drawRow(cart) {
    row.append($("<td>"  + cart.idCar + '</td>'));
    row.append($("<td>"  + cart.valueDiscount + '</td>'));
    row.append($("<td>"  + cart.amountCar + '</td>'));
-    row.append($("<td>"  + cart.price  + '</td>'));
-    row.append($("<td>" + '<a href="#" data-id="' + cart.id + '">delete</a></td>'));
+   row.append($("<td>"  + cart.price  + '</td>'));
+   row.append($("<td>" + '<a href="#" data-id="' + cart.id + '">delete</a></td>'));
  }
 
 function deleteCart(id){
-      console.log('delete car');
+      console.log('delete cart');
       $.ajax({
       type: 'DELETE',
       contentType: 'application/json',
@@ -62,4 +81,66 @@ function deleteCart(id){
             alert('delete Cart error: ' + errorThrown);
       }
       });
+ }
+
+
+
+ function updateCart(){
+         console.log('updateCart');
+         $.ajax({
+         type:'PUT',
+         contentType:'application/json',
+         url:cart,
+         data:formToJSON(),
+         success:function(data,textStatus,jqXHR){
+          alert('Cart updated succesfully');
+           $("#cartId").val("");
+           $("#idCar").val("");
+           $('#amountCar').val('');
+          getAllCart();
+          },
+          error:function(jqXHR,textStatus,errorThrown){
+          alert('updateCart error: '+errorThrown);
+          }
+         });
+   }
+
+
+  function addCart() {
+         console.log('addShoppingCart');
+         $.ajax({
+             type: 'POST',
+             contentType: 'application/json',
+             url: cart,
+             dataType: 'json',
+             data: formToAddJSON(),
+             success: function (data, textStatus, jqXHR) {
+                 alert('Cart created successfully');
+                 console.log('Cart created successfully');
+                 $('#newIdCar').val('');
+                 $('#newAmountCar').val('');
+                 getAllCart();
+             },
+             error: function (jqXHR, textStatus, errorThrown) {
+                 alert('addCart error: ' + errorThrown);
+             }
+         });
+ }
+
+
+
+function formToJSON() {
+          return JSON.stringify({
+         "id": $('#cartId').val(),
+         "idCar": $('#idCar').val(),
+         "amountCar":$('#amountCar').val()
+     });
+  }
+
+ function formToAddJSON() {
+          return JSON.stringify({
+                "id":null,
+              "idCar":  $('#newIdCar').val(),
+              "amountCar": $('#newAmountCar').val()
+          });
  }

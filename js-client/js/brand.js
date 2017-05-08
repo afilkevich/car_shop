@@ -100,8 +100,9 @@ function formToJSON() {
         "id": id == "" ? null : id,
         "name": $('#name').val()
     });
-
  }
+
+
   function formToAddJSON() {
          return JSON.stringify({
              "id":  null,

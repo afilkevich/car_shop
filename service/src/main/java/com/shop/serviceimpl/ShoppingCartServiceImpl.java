@@ -148,10 +148,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         cart.setIdCar(cartDTO.getIdCar());
         Assert.notNull(cartDTO.getAmountCar());
         cart.setAmountCar(cartDTO.getAmountCar());
-        Assert.notNull(discountService.findByValue(cartDTO.getValueDiscount()));
-        cart.setIdDiscount(discountService.findByValue(cartDTO.getValueDiscount()).getId());
-        Assert.notNull(cartDTO.getPrice());
-        cart.setPrice(cartDTO.getPrice());
+
+        cart.setIdDiscount(null);
+
+        cart.setPrice(null);
         return cart;
     }
 }
