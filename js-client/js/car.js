@@ -2,7 +2,13 @@ var car="http://localhost:8088/car";
 
 $.dto=null;
 
-
+$(document).on("click", "a", function() {
+    var action = $(this).text();
+    var selectedId = $(this).data("id");
+    if (action == "delete") {
+      deleteCar(selectedId);
+    }
+});
 
 
 
@@ -42,4 +48,20 @@ function drawRow(car) {
    row.append($("<td>"   + car.dateBuilder + '</td>'));
    row.append($("<td>"   + car.price + '</td>'));
     row.append($("<td>" + '<a href="#" data-id="' + car.id + '">delete</a></td>'));
+ }
+
+ function deleteCar(id){
+      console.log('delete car');
+      $.ajax({
+      type: 'DELETE',
+      contentType: 'application/json',
+      url:car+"/"+id,
+      success:function(textStatus){
+      alert('Car delete successful');
+      getAllCar();
+      },
+      error:function (jqXHR, textStatus, errorThrown) {
+            alert('delete Car error: ' + errorThrown);
+      }
+      });
  }
