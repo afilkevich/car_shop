@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Discount</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<h1>Discount's List</h1>
+<form id="discountFormAdd">
+    <div class="mainArea">
+
+        <label>Value:</label>
+        <input id="newValue" name="value" type="text" required/>
+
+        <button id="btnDiscountAdd">Add</button>
+    </div>
+</form>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Value of discount</th>
+        </tr>
+        </thead>
+        <tbody id="discountList">
+        </tbody>
+    </table>
+</div>
+<hr />
+
+<form id="discountForm">
+    <div class="mainArea">
+
+        <label>Discount id:</label>
+        <input id="id" name="id" type="text" required/>
+
+        <label>Value:</label>
+        <input id="value" name="value" type="text" required/>
+
+        <button id="btnDiscountSave">Update</button>
+
+
+    </div>
+</form>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<!--<script src="js/main.js"></script>-->
+<script src="js/discount.js"></script>
+</body>
+</html>
