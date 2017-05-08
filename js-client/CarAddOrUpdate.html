@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit cars list</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $( function() {
+        $("#date").date({ dateFormat: 'yy-mm-dd' });
+      } );
+  </script>
+</head>
+<body>
+
+<form>
+    <table >
+        <tr>
+            <td align="right">Id</td>
+            <td><input type="text" id="id" required></td>
+        </tr>
+        <tr>
+            <td align="right">Brand</td>
+            <td><input type="text" id="brand" required></td>
+        </tr>
+        <tr>
+            <td align="right">Model</td>
+            <td><input type="text" id="model" required></p></td>
+        </tr>
+        <tr>
+            <td align="right">Configuration type</td>
+            <td><input type="text" id="configType" required></p></td>
+        </tr>
+        <tr>
+            <td align="right">Date build:</td>
+            <td><input type="text" id="date" required></p></td>
+        </tr>
+        <tr>
+            <td align="right">Price:</td>
+            <td><input type="text" id="price" required></p></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right">
+
+                <button id="saveBtn">Save</button></p>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<script src="js/carEdit.js"></script>
+
+</body>
+</html>
