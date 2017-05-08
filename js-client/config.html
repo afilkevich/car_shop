@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configuration</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<h1>Configuration's List</h1>
+<form id="configFormAdd">
+    <div class="mainArea">
+
+        <label>Type:</label>
+        <input id="newType" name="type" type="text" required/>
+
+        <label>Description:</label>
+        <input id="newDescr" name="description" type="text" required/>
+
+        <button id="btnConfigAdd">Add</button>
+    </div>
+</form>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody id="configList">
+        </tbody>
+    </table>
+</div>
+<hr />
+
+<form id="configForm">
+    <div class="mainArea">
+
+        <label>Config id:</label>
+        <input id="configId" name="id" type="text" required/>
+
+        <label>Type:</label>
+        <input id="type" name="type" type="text" required/>
+
+        <label>Description:</label>
+        <input id="descr" name="descr" type="text" required/>
+
+        <button id="btnConfigSave">Update</button>
+
+
+    </div>
+</form>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<!--<script src="js/main.js"></script>-->
+<script src="js/config.js"></script>
+</body>
+</html>
