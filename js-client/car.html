@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Car</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<h1>Car's List</h1>
+<form id="discountFormAdd">
+    <div class="mainArea">
+
+        <label>Brand:</label>
+        <input id="newBrand" name="value" type="text" required/>
+
+        <label>Model:</label>
+        <input id="newModel" name="value" type="text" required/>
+
+        <label>Config type:</label>
+        <input id="newConfigType" name="value" type="text" required/>
+
+        <label>Date of build:</label>
+        <input id="newDateBuild" name="value" type="text" required/>
+
+        <label>Price:</label>
+        <input id="newPrice" name="value" type="text" required/>
+
+        <button id="btnCarAdd">Add</button>
+    </div>
+</form>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Config'type</th>
+            <th>Config's description</th>
+            <th>Date of build</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="carList">
+        </tbody>
+    </table>
+</div>
+<hr />
+
+<form id="discountForm">
+    <div class="mainArea">
+
+        <label>Car id:</label>
+        <input id="id" name="id" type="text" required/>
+
+        <label>Brand:</label>
+        <input id="brand" name="brand" type="text" required/>
+
+        <label>Model:</label>
+        <input id="model" name="model" type="text" required/>
+
+        <label>Config type:</label>
+        <input id="configType" name="configType" type="text" required/>
+
+        <label>Date of build:</label>
+        <input id="dateBuild" name="dateBuild" type="text" required/>
+
+        <label>Price:</label>
+        <input id="price" name="price" type="text" required/>
+
+        <button id="btnCarSave">Update</button>
+
+
+    </div>
+</form>
+
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<!--<script src="js/main.js"></script>-->
+<script src="js/car.js"></script>
+</body>
+</html>
