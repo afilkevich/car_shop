@@ -2,6 +2,8 @@ var car="http://localhost:8088/car";
 
 $.dto=null;
 
+getAllCar();
+
 $(document).on("click", "a", function() {
     var action = $(this).text();
     var selectedId = $(this).data("id");
@@ -10,15 +12,68 @@ $(document).on("click", "a", function() {
     }
 });
 
-   $('#saveBtn').click(function () {
+$('#saveBtn').click(function () {
             window.location = 'carAdd.html';
+});
 
+
+
+$('#selectBtn').click(function () {
+        var brand = $('#selectBrand').val();
+        var model =  $('#selectModel').val();
+        if((brand=='')&&(model==''))
+           getAllCar();
+       if((brand!='')&&(model==''))
+          getCarByBrand(brand);
+       if((brand=='')&&(model!=''))
+           getCarByModel(model);
+       if((brand!= '')&&(model!=''))
+            getCarByBrandAndModel(brand,model);
+            return false;
+});
+
+
+
+
+function getCarByBrandAndModel(brand,model){
+   $.ajax({
+   type: 'GET',
+   url: car +"/brand/"+brand+"/model/"+model,
+    dataType:'json',
+    success: renderList,
+    error:function(jqXHR, textStatus, errorThrown){
+    console.log(jqXHR, textStatus, errorThrown);
+    alert('getByBrand:'+textStatus +jqXHR)
+     }
+   });
+ }
+
+
+ function getCarByModel(model){
+    $.ajax({
+    type: 'GET',
+    url: car +"/model/"+model,
+     dataType:'json',
+     success: renderList,
+     error:function(jqXHR, textStatus, errorThrown){
+     console.log(jqXHR, textStatus, errorThrown);
+     alert('getByModel:'+textStatus +jqXHR)
+      }
     });
+ }
 
-
-
-
-getAllCar();
+function getCarByBrand(brand){
+   $.ajax({
+   type: 'GET',
+   url: car +"/brand/"+brand,
+    dataType:'json',
+    success: renderList,
+    error:function(jqXHR, textStatus, errorThrown){
+    console.log(jqXHR, textStatus, errorThrown);
+    alert('getByBrand:'+textStatus +jqXHR)
+     }
+   });
+ }
 
 function getAllCar(){
    $.ajax({
