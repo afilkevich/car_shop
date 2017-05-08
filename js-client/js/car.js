@@ -42,7 +42,7 @@ function getCarByBrandAndModel(brand,model){
     success: renderList,
     error:function(jqXHR, textStatus, errorThrown){
     console.log(jqXHR, textStatus, errorThrown);
-    alert('getByBrand:'+textStatus +jqXHR)
+    alert('getByBrandA:'+textStatus +jqXHR)
      }
    });
  }
