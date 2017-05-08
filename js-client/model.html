@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Model</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<h1>Model's List</h1>
+<form id="modelFormAdd">
+    <div class="mainArea">
+
+        <label>Name:</label>
+        <input id="newName" name="name" type="text" required/>
+
+        <button id="btnModelAdd">Add</button>
+    </div>
+</form>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody id="modelList">
+        </tbody>
+    </table>
+</div>
+<hr />
+
+<form id="modelForm">
+    <div class="mainArea">
+
+        <label>Model id:</label>
+        <input id="modelId" name="id" type="text" required/>
+
+        <label>Name:</label>
+        <input id="name" name="name" type="text" required/>
+
+        <button id="btnModelSave">Update</button>
+
+
+    </div>
+</form>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<!--<script src="js/main.js"></script>-->
+<script src="js/model.js"></script>
+</body>
+</html>
