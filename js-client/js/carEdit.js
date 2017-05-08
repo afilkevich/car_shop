@@ -2,12 +2,32 @@ var car_edit = "http://localhost:8088/car";
 
 
 
-$('#saveBtn').click(function () {
-    if ($('#id').val() == '')
-        addCar();
-     else
-        updateCar();
-         return false;
+ $('#saveBtn').click(function(){
+         if(($('#id').val()!='')&&($('#brand').val()!='')&&($('#model').val()!='')&&($('#configType').val()!='')&&($('#date').val()!='')&&($('#price').val()!='')){
+         updateCar();
+        return false;
+        }
+
+
+});
+
+
+$('#saveBtn').click(function(){
+         if(($('#id').val()=='')&&($('#brand').val()!='')&&($('#model').val()!='')&&($('#configType').val()!='')&&($('#date').val()!='')&&($('#price').val()!='')){
+         addCar();
+        return false;
+        }
+
+});
+
+    $('#cancelBtn').click(function () {
+                 $('#brand').val(""),
+                 $('#model').val(""),
+                 $('#configType').val(""),
+                 $('#date').val(""),
+                 $('#price').val("")
+            window.location = 'car.html';
+
     });
 
 

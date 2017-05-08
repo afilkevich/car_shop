@@ -10,6 +10,12 @@ $(document).on("click", "a", function() {
     }
 });
 
+   $('#saveBtn').click(function () {
+            window.location = 'carAdd.html';
+
+    });
+
+
 
 
 getAllCar();
