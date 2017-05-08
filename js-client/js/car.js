@@ -1,5 +1,6 @@
 var car="http://localhost:8088/car";
 
+
 $.dto=null;
 
 getAllCar();
@@ -12,10 +13,10 @@ $(document).on("click", "a", function() {
     }
 });
 
+
 $('#saveBtn').click(function () {
             window.location = 'carAdd.html';
 });
-
 
 
 $('#selectBtn').click(function () {
@@ -31,8 +32,6 @@ $('#selectBtn').click(function () {
             getCarByBrandAndModel(brand,model);
             return false;
 });
-
-
 
 
 function getCarByBrandAndModel(brand,model){
@@ -126,3 +125,6 @@ function drawRow(car) {
       }
       });
  }
+
+
+

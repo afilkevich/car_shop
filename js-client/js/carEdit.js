@@ -45,7 +45,7 @@ function addCar() {
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert('addPlayer error: ' + errorThrown);
+                alert('addCar error: ' + errorThrown);
             }
         });
 }
