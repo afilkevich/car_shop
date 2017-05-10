@@ -44,9 +44,7 @@ public class ShoppingCartServiceImplTest {
     public void findAll() throws Exception {
         LOGGER.debug("ShoppingCartServiceImpl test: findAll");
         List<ShoppingCartDTO> list=shoppingCartService.findAll();
-        for (ShoppingCartDTO cartDTO:list){
-            System.out.println(cartDTO);
-        }
+
         Assert.assertTrue(list.size()>0);
    }
 
@@ -54,36 +52,36 @@ public class ShoppingCartServiceImplTest {
     public void findById() throws Exception {
         LOGGER.debug("ShoppingCartServiceImpl test: findById");
         ShoppingCartDTO shoppingCart=shoppingCartService.findById(ID);
-        System.out.println(shoppingCart);
+
         Assert.assertEquals(ID,shoppingCart.getId());
     }
 
-   /* @Test(expected = IllegalArgumentException.class)
+   @Test(expected = IllegalArgumentException.class)
     public void findByNullId() throws Exception{
         LOGGER.debug("ShoppingCartServiceImpl test:findByNullId");
         ShoppingCartDTO shoppingCart=shoppingCartService.findById(null);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void findByWrongId() throws Exception{
         LOGGER.debug("ShoppingCartServiceImpl test: findByWrongId");
         ShoppingCartDTO shoppingCart=shoppingCartService.findById(Wrong_ID);
         Assert.assertNull(shoppingCart);
-    }*/
+    }
 
     @Test
     public void convertToAddShoppingCart() throws Exception{
         LOGGER.debug("ShoppingCartServiceImpl test:convertToShoppingCart");
         ShoppingCart cart=shoppingCartService.convertToAddShoppingCart(CART_DTO);
-        System.out.println(cart);
         Assert.assertNotNull(cart);
     }
 
     @Test
     public void convertToUpShoppingCart() throws Exception{
         ShoppingCart cart=shoppingCartService.convertToUpShoppingCart(UP_CART_DTO);
-        System.out.println(cart);
+
         Assert.assertNotNull(cart);
+
     }
 
 
@@ -92,7 +90,7 @@ public class ShoppingCartServiceImplTest {
         LOGGER.debug("ShoppingCartServiceImpl test: insert");
         Integer id= shoppingCartService.insert(CART_DTO);
         ShoppingCartDTO cart=shoppingCartService.findById(id);
-        System.out.println(cart);
+
         Assert.assertNotNull(cart);
     }
 
@@ -107,8 +105,6 @@ public class ShoppingCartServiceImplTest {
         LOGGER.debug("ShoppingCartServiceImpl test: insertWrongCart");
         shoppingCartService.insert(UP_CART_DTO);
     }
-
-
 
     @Test
     public void update() throws Exception {
@@ -130,8 +126,8 @@ public class ShoppingCartServiceImplTest {
         shoppingCartService.delete(1);
         List<ShoppingCartDTO> list=shoppingCartService.findAll();
         Assert.assertTrue(list.size()==0);
-
     }
+
     @Test(expected = IllegalArgumentException.class)
     public void deleteNull() throws Exception{
         LOGGER.debug("ShoppingCartImpl test: deleteNull");
@@ -142,15 +138,13 @@ public class ShoppingCartServiceImplTest {
     public void deleteWrongId() throws Exception{
         LOGGER.debug("ShoppingCartImpl test: deleteWrongId");
         shoppingCartService.delete(Wrong_ID);
-
     }
 
     @Test
     public void calculatePrice() throws Exception{
         LOGGER.debug("ShoppingCartServiceImpl test:calculatePrice");
-        System.out.println(CART);
         shoppingCartService.calculatePrice(CART);
-        System.out.println(CART);
+
         Assert.assertEquals(DISCOUNT_ID,CART.getIdDiscount());
         Assert.assertEquals(PRICE,CART.getPrice());
     }
@@ -160,7 +154,5 @@ public class ShoppingCartServiceImplTest {
         LOGGER.debug("ShoppingCartServiceImpl test: calculatePriceNull");
         shoppingCartService.calculatePrice(null);
     }
-
-
 
 }

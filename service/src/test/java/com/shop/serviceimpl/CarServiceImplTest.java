@@ -44,9 +44,7 @@ public class CarServiceImplTest {
     public void findAll() throws Exception {
         LOGGER.debug("CarServiceImpl test: find all");
         List<CarDTO> list=carService.findAll();
-        for(CarDTO car:list){
-            System.out.println(car);
-        }
+
         Assert.assertTrue(list.size()>0);
 
     }
@@ -115,9 +113,7 @@ public class CarServiceImplTest {
     public void findByBrandAndModel() throws Exception{
         LOGGER.debug("CarServiceImpl test: findByBrandAndModel");
         List<CarDTO>list=carService.findByBrandAndModel(BRAND,MODEL);
-        for(CarDTO carDTO:list){
-            System.out.println(carDTO);
-        }
+
         Assert.assertTrue(list.size()>0);
     }
 
@@ -126,7 +122,7 @@ public class CarServiceImplTest {
     public void convertToCar() throws Exception{
         LOGGER.debug("CarServiceImpl test: convertToCar");
         Car car=carService.convertToCar(CAR_DTO);
-        System.out.println(car);
+
         Assert.assertNotNull(car);
     }
 
