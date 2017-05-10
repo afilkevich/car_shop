@@ -88,7 +88,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart cart=convertToUpShoppingCart(cartDTO);
         calculatePrice(cart);
         shoppingCartMapper.update(cart);
-        //System.out.println("update"+shoppingCartMapper.findById(cart.getId()));
+
         return cart.getId();
     }
 
