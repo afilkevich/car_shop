@@ -56,6 +56,14 @@ public class ShoppingCartMapperTest {
     }
 
     @Test
+    public void delete()throws Exception{
+        LOGGER.debug("ShoppingCartMapper test:delete");
+        shoppingCartMapper.delete(1);
+        ShoppingCart cart=shoppingCartMapper.findById(1);
+        Assert.assertNull(cart);
+    }
+
+    @Test
     public void update() throws Exception {
         LOGGER.debug("ShoppingCartMApperTest:update()");
         ShoppingCart cart=shoppingCartMapper.findById(ID);
@@ -64,7 +72,6 @@ public class ShoppingCartMapperTest {
         cart.setPrice(3400);
 
         shoppingCartMapper.update(cart);
-
 
         Assert.assertTrue(shoppingCartMapper.findById(ID).getIdDiscount()==2);
         Assert.assertTrue(shoppingCartMapper.findById(ID).getPrice()==3400);
