@@ -52,7 +52,7 @@ public class ConfigRestController {
         return configService.findById(id);
     }
 
-    // curl -H "Content-Type: application/json" -X POST -d '{"type":"apgred", "description":"pro"}' -v localhost:8088/config
+    // curl -H "Content-Type: application/json" -X POST -d '{"type":"upgrade", "description":"pro"}' -v localhost:8088/config
     @ResponseBody
     @ResponseStatus(value = HttpStatus.CREATED)
     @RequestMapping(value="config",method = RequestMethod.POST)
