@@ -28,7 +28,7 @@
          JOIN car_shop.configuration config ON car.id_configuration=config.id
     </select>
 
-    <select id="findByBrand"  resultMap="carDTOResultMap">
+    <select id="findByBrand"  parameterType="String" resultMap="carDTOResultMap">
         SELECT
         car.id ,
         brand.name_brand ,
@@ -43,7 +43,7 @@
         WHERE brand.name_brand=#{brandName}
     </select>
 
-    <select id="findByModel"  resultMap="carDTOResultMap">
+    <select id="findByModel"  parameterType="String" resultMap="carDTOResultMap">
         SELECT
         car.id ,
         brand.name_brand ,
@@ -58,7 +58,7 @@
         WHERE model.name_model=#{modelName}
     </select>
 
-    <select id="findByBrandAndModel"  resultMap="carDTOResultMap">
+    <select id="findByBrandAndModel"  parameterType="String" resultMap="carDTOResultMap">
         SELECT
         car.id ,
         brand.name_brand ,
@@ -73,7 +73,7 @@
         WHERE brand.name_brand=#{brandName} AND model.name_model=#{modelName}
     </select>
 
-    <select id="findById"  resultMap="carDTOResultMap">
+    <select id="findById"  parameterType="int" resultMap="carDTOResultMap">
         SELECT
         car.id ,
         brand.name_brand ,

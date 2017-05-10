@@ -23,7 +23,7 @@
         JOIN car_shop.discount discount ON cart.id_discount=discount.id
     </select>
 
-    <select id="findById" resultMap="shoppingCartDTOResultMap">
+    <select id="findById" parameterType="int"  resultMap="shoppingCartDTOResultMap">
         SELECT
         cart.id ,
         cart.id_car ,
