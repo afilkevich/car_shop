@@ -1,0 +1,15 @@
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.shop" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+        </Logger>
+        <Root level="ERROR">
+            <appender-ref ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//com.shop.mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <mappers>
+        <mapper resource="mappers/brandMapper.xml"/>
+        <mapper resource="mappers/carDTOMapper.xml"/>
+        <mapper resource="mappers/carMapper.xml"/>
+        <mapper resource="mappers/configMapper.xml"/>
+        <mapper resource="mappers/discountMapper.xml"/>
+        <mapper resource="mappers/modelMapper.xml"/>
+        <mapper resource="mappers/shoppingCartDTOMapper.xml"/>
+        <mapper resource="mappers/shoppingCartMapper.xml"/>
+    </mappers>
+
+</configuration>

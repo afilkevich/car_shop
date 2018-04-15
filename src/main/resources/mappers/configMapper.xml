@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.ConfigMapper">
+
+    <resultMap id="configResultMap" type="com.shop.model.Config">
+        <id property="id" column="id" />
+        <result property="type" column="type_configuration" />
+        <result property="description" column="description_configuration" />
+
+    </resultMap>
+
+    <select id="findAll" resultMap="configResultMap">
+        SELECT *
+        FROM car_shop.configuration;
+    </select>
+
+    <select id="findByType" parameterType="String" resultMap="configResultMap">
+        SELECT * FROM car_shop.configuration WHERE type_configuration=#{type}
+    </select>
+
+    <select id="findById" parameterType="int" resultMap="configResultMap">
+        SELECT * FROM car_shop.configuration WHERE id=#{id}
+    </select>
+
+
+    <insert id="insert" parameterType="com.shop.model.Config">
+        INSERT INTO car_shop.configuration (type_configuration, description_configuration)
+        VALUES (#{type}, #{description})
+    </insert>
+
+    <update id="update" parameterType="com.shop.model.Config">
+        UPDATE car_shop.configuration SET
+        type_configuration = #{type},
+        description_configuration=#{description}
+        WHERE id= #{id}
+    </update>
+
+</mapper>

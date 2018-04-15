@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.ModelMapper">
+
+    <resultMap id="modelResultMap" type="com.shop.model.Model">
+        <id property="id" column="id" />
+        <result property="name" column="name_model" />
+
+    </resultMap>
+
+    <select id="findAll" resultMap="modelResultMap">
+        SELECT *
+        FROM car_shop.model;
+    </select>
+
+    <select id="findByName" parameterType="String" resultMap="modelResultMap">
+        SELECT * FROM car_shop.model WHERE name_model=#{name}
+    </select>
+
+    <select id="findById" parameterType="int" resultMap="modelResultMap">
+        SELECT * FROM car_shop.model WHERE id=#{id}
+    </select>
+
+
+    <insert id="insert" parameterType="com.shop.model.Model">
+        INSERT INTO car_shop.model ( name_model)
+        VALUES (#{name})
+    </insert>
+
+    <update id="update" parameterType="com.shop.model.Model">
+        UPDATE car_shop.model SET
+        name_model = #{name}
+        WHERE id= #{id}
+    </update>
+</mapper>
