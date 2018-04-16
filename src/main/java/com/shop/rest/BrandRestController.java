@@ -38,39 +38,39 @@ public class BrandRestController {
         return brandService.findAll();
     }
 
-    // curl -v localhost:8088/brand/name/Toyota
-    @ResponseBody
-    @RequestMapping(value = "brand/name/{name}",method = RequestMethod.GET)
-    public Brand findBrandByName(@PathVariable(value = "name")String name){
-        LOGGER.debug("BrandRestController: findBrandByName");
-        return brandService.findByName(name);
-    }
-
-    // curl -v localhost:8088/brand/1
-    @ResponseBody
-    @RequestMapping(value = "brand/{id}",method = RequestMethod.GET)
-    public Brand findBrandById(@PathVariable(value = "id")Integer id){
-        LOGGER.debug("BrandRestController: findBrandById");
-        return brandService.findById(id);
-    }
-
-    // curl -H "Content-Type: application/json" -X POST -d '{"name":"BMW"}' -v localhost:8088/brand
-    @ResponseBody
-    @ResponseStatus(value = HttpStatus.CREATED)
-    @RequestMapping(value="brand",method = RequestMethod.POST)
-    public Integer addBrand(@RequestBody Brand brand){
-        LOGGER.debug("BrandRestController:addBrand",brand);
-         return brandService.insert(brand);
-    }
-
-    // curl -H "Content-Type: application/json" -X PUT -d '{"id":"2","name":"BMW"}' -v localhost:8088/brand
-    @ResponseBody
-    @ResponseStatus(value = HttpStatus.ACCEPTED)
-    @RequestMapping(value = "brand", method = RequestMethod.PUT)
-    public Integer updateBrand(@RequestBody Brand brand){
-        LOGGER.debug("BrandRestController:updateBrand",brand);
-         return brandService.update(brand);
-    }
-
+//    // curl -v localhost:8088/brand/name/Toyota
+//    @ResponseBody
+//    @RequestMapping(value = "brand/name/{name}",method = RequestMethod.GET)
+//    public Brand findBrandByName(@PathVariable(value = "name")String name){
+//        LOGGER.debug("BrandRestController: findBrandByName");
+//        return brandService.findByName(name);
+//    }
+//
+//    // curl -v localhost:8088/brand/1
+//    @ResponseBody
+//    @RequestMapping(value = "brand/{id}",method = RequestMethod.GET)
+//    public Brand findBrandById(@PathVariable(value = "id")Integer id){
+//        LOGGER.debug("BrandRestController: findBrandById");
+//        return brandService.findById(id);
+//    }
+//
+//    // curl -H "Content-Type: application/json" -X POST -d '{"name":"BMW"}' -v localhost:8088/brand
+//    @ResponseBody
+//    @ResponseStatus(value = HttpStatus.CREATED)
+//    @RequestMapping(value="brand",method = RequestMethod.POST)
+//    public Integer addBrand(@RequestBody Brand brand){
+//        LOGGER.debug("BrandRestController:addBrand",brand);
+//         return brandService.insert(brand);
+//    }
+//
+//    // curl -H "Content-Type: application/json" -X PUT -d '{"id":"2","name":"BMW"}' -v localhost:8088/brand
+//    @ResponseBody
+//    @ResponseStatus(value = HttpStatus.ACCEPTED)
+//    @RequestMapping(value = "brand", method = RequestMethod.PUT)
+//    public Integer updateBrand(@RequestBody Brand brand){
+//        LOGGER.debug("BrandRestController:updateBrand",brand);
+//         return brandService.update(brand);
+//    }
+//
 
 }

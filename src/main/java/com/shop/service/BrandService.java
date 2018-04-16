@@ -9,8 +9,8 @@ import java.util.List;
  */
 public interface BrandService {
      List<Brand> findAll();
-     Brand findByName(String name);
-     Brand findById(Integer id);
-     Integer insert(Brand brand);
-     Integer update(Brand brand);
+//     Brand findByName(String name);
+//     Brand findById(Integer id);
+//     Integer insert(Brand brand);
+//     Integer update(Brand brand);
 }

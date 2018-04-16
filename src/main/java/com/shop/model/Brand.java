@@ -1,12 +1,25 @@
 package com.shop.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
  * Created by master on 21.4.17.
  */
+@Entity
+@Table(name="car_shop.brand")
 public class Brand {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Integer id;
+
+    @NotEmpty
+    @Size(max=45)
+    @Column(name="brand_name")
     private String name;
 
     public Brand(Integer id, String name) {
