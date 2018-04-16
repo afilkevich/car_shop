@@ -6,13 +6,13 @@
 
     <mappers>
         <mapper resource="mappers/brandMapper.xml"/>
-        <mapper resource="mappers/carDTOMapper.xml"/>
-        <mapper resource="mappers/carMapper.xml"/>
-        <mapper resource="mappers/configMapper.xml"/>
-        <mapper resource="mappers/discountMapper.xml"/>
-        <mapper resource="mappers/modelMapper.xml"/>
-        <mapper resource="mappers/shoppingCartDTOMapper.xml"/>
-        <mapper resource="mappers/shoppingCartMapper.xml"/>
+        <!--<mapper resource="mappers/carDTOMapper.xml"/>-->
+        <!--<mapper resource="mappers/carMapper.xml"/>-->
+        <!--<mapper resource="mappers/configMapper.xml"/>-->
+        <!--<mapper resource="mappers/discountMapper.xml"/>-->
+        <!--<mapper resource="mappers/modelMapper.xml"/>-->
+        <!--<mapper resource="mappers/shoppingCartDTOMapper.xml"/>-->
+        <!--<mapper resource="mappers/shoppingCartMapper.xml"/>-->
     </mappers>
 
 </configuration>
