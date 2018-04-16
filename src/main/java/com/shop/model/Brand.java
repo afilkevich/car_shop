@@ -10,7 +10,7 @@ import java.util.Objects;
  * Created by master on 21.4.17.
  */
 @Entity
-@Table(name="car_shop.brand")
+@Table(name="brand")
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class Brand {
 
     @NotEmpty
     @Size(max=45)
-    @Column(name="brand_name")
+    @Column(name="name")
     private String name;
 
     public Brand(Integer id, String name) {

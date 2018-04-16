@@ -37,14 +37,14 @@
     </bean>
 
 
-    <jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS">
+    <jdbc:initialize-database data-source="dataSource" >
         <jdbc:script location="classpath:sql/tables.sql"/>
         <jdbc:script location="classpath:sql/inserts.sql"/>
     </jdbc:initialize-database>
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="packagesToScan" value="com.shop.model"/>
+        <property name="packagesToScan" value="com.shop"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -57,13 +57,13 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">false</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
             </props>
         </property>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactoty"/>
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
     <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->

@@ -38,6 +38,9 @@ public class BrandMapperTest {
         LOGGER.debug("BrandMapperTest:findall()");
         List<Brand> list=brandDAO.findAll();
         Assert.assertTrue(list.size()>0);
+        for (Brand b: list){
+            System.out.println(b);
+        }
 
     }
 //

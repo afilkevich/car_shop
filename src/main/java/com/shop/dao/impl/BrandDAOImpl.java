@@ -21,7 +21,7 @@ public class BrandDAOImpl implements BrandDAO {
     @Override
     public List<Brand> findAll() {
         System.out.println("find ALL brands");
-        String query="from car_shop.brand order by id";
+        String query="from Brand";
         TypedQuery<Brand> typedQuery=entityManager.createQuery(query, Brand.class);
         return typedQuery.getResultList();
     }
