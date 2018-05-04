@@ -5,13 +5,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema car_shop
 -- -----------------------------------------------------
---DROP SCHEMA IF EXISTS car_shop ;
+DROP database  IF EXISTS car_shop ;
 --
 ---- -----------------------------------------------------
 ---- Schema car_shop
 ---- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS car_shop DEFAULT CHARACTER SET utf8 ;
---USE car_shop ;
+CREATE DATABASE IF NOT EXISTS car_shop DEFAULT CHARACTER SET utf8 ;
+USE car_shop ;
 
 -- -----------------------------------------------------
 -- Table `car_shop`.`configuration`

@@ -62,13 +62,13 @@ public class BrandMapperTest {
 //        Assert.assertTrue(list.size()==3);
 //    }
 //
-//    @Test
-//    public void findByName() throws Exception{
-//        LOGGER.debug("BrandMapperTest:findByName()");
-//        Brand brand=brandMapper.findByName(name);
-//        Assert.assertEquals(name,brand.getName());
-//
-//    }
+    @Test
+    public void findByName() throws Exception{
+        LOGGER.debug("BrandMapperTest:findByName()");
+        Brand brand=brandDAO.findByName(name);
+        Assert.assertEquals(name,brand.getName());
+
+  }
 //
 //    @Test
 //    public void findById() throws Exception{
